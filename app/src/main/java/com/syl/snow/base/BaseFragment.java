@@ -1,0 +1,121 @@
+package com.syl.snow.base;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.syl.snow.utils.LogUtils;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import butterknife.ButterKnife;
+
+/**
+ * Created by Bright on 2018/12/8.
+ *
+ * @Describe Fragment的基类
+ * @Called
+ */
+public class BaseFragment extends Fragment {
+    private static final String TAG = BaseFragment.class.getSimpleName();
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        LogUtils.i(TAG, "onCreate()");
+        init();
+        initData();
+    }
+
+    public void init() {
+
+    }
+
+    public void initData() {
+
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        LogUtils.i(TAG, "onCreateView()");
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        LogUtils.i(TAG,"onViewCreated");
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        LogUtils.d(TAG,"onActivityCreated");
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        LogUtils.d(TAG,"onViewStateRestored");
+        super.onViewStateRestored(savedInstanceState);
+    }
+
+    @Override
+    public void onDestroyView() {
+        LogUtils.d(TAG,"onDestroyView");
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void onResume() {
+        LogUtils.d(TAG,"onResume");
+        super.onResume();
+    }
+
+    @Override
+    public void onStart() {
+        LogUtils.d(TAG,"onStart");
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        LogUtils.d(TAG,"onStop");
+        super.onStop();
+    }
+
+    @Override
+    public void onPause() {
+        LogUtils.d(TAG,"onPause");
+        super.onPause();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        LogUtils.d(TAG,"onActivityResult");
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        LogUtils.d(TAG,"onAttach");
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onDetach() {
+        LogUtils.d(TAG,"onDetach");
+        super.onDetach();
+    }
+
+    @Override
+    public void onAttachFragment(Fragment childFragment) {
+        LogUtils.d(TAG,"onAttachFragment");
+        super.onAttachFragment(childFragment);
+    }
+}
