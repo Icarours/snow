@@ -1,6 +1,7 @@
 package com.syl.snow.utils;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -14,6 +15,7 @@ import java.io.InputStreamReader;
 public class StringUtils {
     /**
      * 输入流转化为String
+     *
      * @param inputStream 输入流
      * @return
      */
@@ -35,5 +37,31 @@ public class StringUtils {
             }
         }
         return sb.toString();
+    }
+
+    /**
+     * 输入流转化为String.(还没有验证,不过应该可以)
+     *
+     * @param inputStream
+     * @return
+     */
+    public static String inputStream2String2(InputStream inputStream) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            byte[] buf = new byte[1024];
+            int len = 0;
+            while ((len = inputStream.read(buf)) > 0) {
+                baos.write(buf, 0, len);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                baos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return baos.toString();
     }
 }

@@ -10,7 +10,9 @@ import android.widget.Toast;
 import com.syl.snow.R;
 import com.syl.snow.bean.TitleBean;
 import com.syl.snow.fragment.content1.Demo1Fragment;
+import com.syl.snow.fragment.content1.DialogDemoFragment;
 import com.syl.snow.fragment.content1.Http1Fragment;
+import com.syl.snow.fragment.content1.ImageFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -42,8 +44,10 @@ public class Content1Activity extends AppCompatActivity {
         ButterKnife.bind(this);
         initToolBar();
         Intent intent = getIntent();
-        TitleBean title = (TitleBean) intent.getSerializableExtra("title");
-        initFragment(title);
+        TitleBean titleBean = (TitleBean) intent.getSerializableExtra("title");
+        mToolbar.setTitle(titleBean.getTitle());
+        mToolbar.setSubtitle(titleBean.getDescription());
+        initFragment(titleBean);
     }
 
     private void initFragment(TitleBean titleBean) {
@@ -54,11 +58,19 @@ public class Content1Activity extends AppCompatActivity {
                 transaction.replace(R.id.fl_content1, new Http1Fragment());
                 transaction.commit();
                 break;
+            case 1:
+                transaction.replace(R.id.fl_content1, new DialogDemoFragment());
+                transaction.commit();
+                break;
+            case 2:
+                transaction.replace(R.id.fl_content1, new ImageFragment());
+                transaction.commit();
+                break;
             default:
                 Demo1Fragment fragment = new Demo1Fragment();
                 transaction.replace(R.id.fl_content1, fragment);
                 Bundle args = new Bundle();
-                args.putSerializable("title",titleBean);
+                args.putSerializable("title", titleBean);
                 fragment.setArguments(args);
                 transaction.commit();
                 break;
