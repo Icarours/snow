@@ -43,6 +43,7 @@ public class Content1Fragment extends BaseFragment {
         mList.add(new TitleBean(0,"httpConnection", "httpConnection网络请求"));
         mList.add(new TitleBean(1,"dialog", "常用对话框"));
         mList.add(new TitleBean(2,"加载图片", "压缩图片,加载大图片"));
+        mList.add(new TitleBean(3,"RecyclerView", "RecyclerView加载更多举例"));
         for (int i = 100; i < 140; i++) {
             mList.add(new TitleBean(i,"title--" + i, "desc--" + i));
         }
