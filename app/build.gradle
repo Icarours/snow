@@ -43,6 +43,7 @@ dependencies {
     implementation 'com.zhouyou:rxeasyhttp:2.1.2'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.github.SelfZhangTQ:TRecyclerView:2.5.4'
-    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+    implementation 'com.github.SelfZhangTQ:TRecyclerView:2.5.4'//RecyclerView刷新,下拉刷新,上滑加载更多
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'//动态权限请求
+    implementation 'com.yanzhenjie:recyclerview-swipe:1.2.0'//RecyclerView滑动菜单
 }

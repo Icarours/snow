@@ -25,7 +25,7 @@ import butterknife.OnClick;
 /**
  * Created by Bright on 2018/12/23.
  *
- * @Describe 加载图片
+ * @Describe 加载本地图片,使用RxPermission请求动态权限
  * @Called
  */
 public class ImageFragment extends BaseFragment {
