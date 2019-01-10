@@ -16,6 +16,7 @@ import com.syl.snow.fragment.content1.ImageFragment;
 import com.syl.snow.fragment.content1.Rv1Fragment;
 import com.syl.snow.fragment.content1.Rv2Fragment;
 import com.syl.snow.fragment.content1.Rv3Fragment;
+import com.syl.snow.fragment.content1.ViewFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -79,6 +80,10 @@ public class Content1Activity extends AppCompatActivity {
                 break;
             case 5:
                 transaction.replace(R.id.fl_content1, new Rv3Fragment());
+                transaction.commit();
+                break;
+            case 6:
+                transaction.replace(R.id.fl_content1, new ViewFragment());
                 transaction.commit();
                 break;
             default:
