@@ -46,4 +46,7 @@ dependencies {
     implementation 'com.github.SelfZhangTQ:TRecyclerView:2.5.4'//RecyclerView刷新,下拉刷新,上滑加载更多
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'//动态权限请求
     implementation 'com.yanzhenjie:recyclerview-swipe:1.2.0'//RecyclerView滑动菜单
+    // ViewModel和LiveData依赖
+    implementation "android.arch.lifecycle:extensions:1.1.0"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
 }

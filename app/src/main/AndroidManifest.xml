@@ -37,6 +37,8 @@
         </activity>
         <activity android:name=".activity.ViewActivity">
         </activity>
+        <activity android:name=".activity.LiveDataActivity">
+        </activity>
     </application>
 
 </manifest>

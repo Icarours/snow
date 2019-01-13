@@ -211,11 +211,12 @@ public class Rv2Fragment extends BaseFragment {
 
     private void initAdapter() {
         if (mAdapter == null) {
+            //给RecyclerView设置Adapter必须紧接着Adapter创建之后,如果在if语句后面设置,RecyclerView上拉刷新之后会自动跳到RecyclerView顶部
             mAdapter = new Rv2Adapter(R.layout.rv_item2, mList);
+            mRv.setAdapter(mAdapter);
         } else {
             mAdapter.notifyDataSetChanged();
         }
-        mRv.setAdapter(mAdapter);
     }
 
     class Rv2Adapter extends BaseQuickAdapter<WarnMessage, BaseViewHolder> {

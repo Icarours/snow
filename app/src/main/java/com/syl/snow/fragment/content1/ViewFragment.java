@@ -20,7 +20,7 @@ import butterknife.OnClick;
 /**
  * Created by Bright on 2019/1/10.
  *
- * @Describe 自定义View,入口
+ * @Describe 自定义View, 入口
  * @Called
  */
 public class ViewFragment extends BaseFragment {
@@ -35,13 +35,41 @@ public class ViewFragment extends BaseFragment {
         return rootView;
     }
 
-    @OnClick({R.id.btn_view1})
+    @OnClick({R.id.btn_view1, R.id.btn_view2, R.id.btn_view3, R.id.btn_view4, R.id.btn_view5,
+            R.id.btn_view6, R.id.btn_view7, R.id.btn_view8})
     public void onViewClick(View view) {
-        Intent intent;
+        Intent intent = new Intent(getContext(), ViewActivity.class);
         switch (view.getId()) {
             case R.id.btn_view1:
-                intent = new Intent(getContext(), ViewActivity.class);
-                intent.putExtra("viewType", "view1");
+                intent.putExtra("viewType", 0);
+                startActivity(intent);
+                break;
+            case R.id.btn_view2:
+                intent.putExtra("viewType", 1);
+                startActivity(intent);
+                break;
+            case R.id.btn_view3:
+                intent.putExtra("viewType", 2);
+                startActivity(intent);
+                break;
+            case R.id.btn_view4:
+                intent.putExtra("viewType", 3);
+                startActivity(intent);
+                break;
+            case R.id.btn_view5:
+                intent.putExtra("viewType", 4);
+                startActivity(intent);
+                break;
+            case R.id.btn_view6:
+                intent.putExtra("viewType", 5);
+                startActivity(intent);
+                break;
+            case R.id.btn_view7:
+                intent.putExtra("viewType", 6);
+                startActivity(intent);
+                break;
+            case R.id.btn_view8:
+                intent.putExtra("viewType", 7);
                 startActivity(intent);
                 break;
             default:

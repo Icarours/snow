@@ -7,8 +7,74 @@
     android:layout_height="match_parent"
     tools:context=".activity.ViewActivity">
     <com.syl.snow.view.ViewCircle
+        android:id="@+id/viewCircle"
+        android:layout_width="wrap_content" android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv"/>
+    <com.syl.snow.view.ViewPoint
+        android:id="@+id/view2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp" android:layout_marginTop="16dp"
+        android:layout_height="0dp" android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv"/>
+    <com.syl.snow.view.ViewBitmap
+        android:id="@+id/view3"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp" android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv"/>
+    <com.syl.snow.view.ViewArc
+        android:id="@+id/view4"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp" android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv"/>
+    <com.syl.snow.view.ViewStar
+        android:id="@+id/view5"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp" android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv"/>
+    <com.syl.snow.view.ViewPath
+        android:id="@+id/view6"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp" android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv"/>
+    <com.syl.snow.view.ViewText
+        android:id="@+id/view7"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp" android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv"/>
+    <com.syl.snow.view.ViewBitmap2
+        android:id="@+id/view8"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp" android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv"/>
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp" android:layout_marginTop="8dp"
+        android:text="TextView"
         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp" android:layout_marginTop="8dp"
+        android:text="TextView" app:layout_constraintStart_toEndOf="@+id/tv"
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

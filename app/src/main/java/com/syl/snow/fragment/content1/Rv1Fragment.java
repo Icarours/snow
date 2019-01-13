@@ -84,7 +84,7 @@ public class Rv1Fragment extends BaseFragment {
 
                     @Override
                     public void onSuccess(String s) {
-//                        LogUtils.d(TAG, "result=" + s);
+                        LogUtils.d(TAG, "result=" + s);
                         BaseApi baseApi = JSONObject.parseObject(s, BaseApi.class);
                         if (baseApi.isOk()) {
                             String apiData = baseApi.getData();
@@ -92,9 +92,9 @@ public class Rv1Fragment extends BaseFragment {
                                 List<WarnMessage> list = JSONObject.parseArray(apiData, WarnMessage.class);
                                 if (list.size() > 0) {
                                     mList.addAll(list);
-                                    pageNumber++;
                                     initAdapter();
                                     if (list.size() % Integer.parseInt(Constant.PAGE_SIZE) == 0) {
+                                        pageNumber++;
                                         mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
                                             @Override
                                             public void onLoadMoreRequested() {
@@ -108,7 +108,8 @@ public class Rv1Fragment extends BaseFragment {
                                         }, mRv);
                                         mAdapter.loadMoreComplete();
                                     } else {
-                                        mAdapter.loadMoreEnd();
+                                        if (pageNumber > 1)
+                                            mAdapter.loadMoreEnd();
                                     }
                                 } else {
                                     LogUtils.d(TAG, "data 数据集长度为0");
@@ -126,11 +127,12 @@ public class Rv1Fragment extends BaseFragment {
 
     private void initAdapter() {
         if (mAdapter == null) {
+            //给RecyclerView设置Adapter必须紧接着Adapter创建之后,如果在if语句后面设置,RecyclerView上拉刷新之后会自动跳到RecyclerView顶部
             mAdapter = new RvAdapter(R.layout.rv_item1, mList);
+            mRv.setAdapter(mAdapter);
         } else {
             mAdapter.notifyDataSetChanged();
         }
-        mRv.setAdapter(mAdapter);
     }
 
     class RvAdapter extends BaseQuickAdapter<WarnMessage, BaseViewHolder> {
