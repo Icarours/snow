@@ -1,7 +1,6 @@
 package com.syl.snow.activity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -44,12 +43,7 @@ public class LiveDataActivity extends AppCompatActivity {
         transaction.commit();
         //初始化ViewModule
         AccountModle modle = ViewModelProviders.of(this).get(AccountModle.class);
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                modle.getAccount().postValue(new AccountBean("张三","15989469066","https://www.baidu.com"));
-            }
-        });
+        mButton.setOnClickListener(v -> modle.getAccount().postValue(new AccountBean("张三","15989469066","https://www.baidu.com")));
         modle.getAccount().observe(this, new Observer<AccountBean>() {
             @Override
             public void onChanged(AccountBean accountBean) {

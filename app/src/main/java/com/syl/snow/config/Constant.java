@@ -8,4 +8,5 @@ package com.syl.snow.config;
  */
 public class Constant {
     public static String PAGE_SIZE = "12";
+    public static int delayTime = 1000;
 }

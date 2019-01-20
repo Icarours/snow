@@ -14,6 +14,7 @@ import com.syl.snow.fragment.content1.DialogDemoFragment;
 import com.syl.snow.fragment.content1.Http1Fragment;
 import com.syl.snow.fragment.content1.ImageFragment;
 import com.syl.snow.fragment.content1.JetPack1Fragment;
+import com.syl.snow.fragment.content1.RoomFragment;
 import com.syl.snow.fragment.content1.Rv1Fragment;
 import com.syl.snow.fragment.content1.Rv2Fragment;
 import com.syl.snow.fragment.content1.Rv3Fragment;
@@ -89,6 +90,10 @@ public class Content1Activity extends AppCompatActivity {
                 break;
             case 7:
                 transaction.replace(R.id.fl_content1, new JetPack1Fragment());
+                transaction.commit();
+                break;
+            case 8:
+                transaction.replace(R.id.fl_content1, new RoomFragment());
                 transaction.commit();
                 break;
             default:

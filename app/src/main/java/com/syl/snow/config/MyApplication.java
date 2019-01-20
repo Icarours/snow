@@ -1,12 +1,15 @@
 package com.syl.snow.config;
 
 import android.app.Application;
+import android.os.Handler;
+import android.os.Looper;
 
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.cache.converter.SerializableDiskConverter;
 import com.zhouyou.http.cache.model.CacheMode;
 import com.zhouyou.http.model.HttpHeaders;
 import com.zhouyou.http.model.HttpParams;
+
 
 /**
  * Created by Bright on 2018/12/8.
@@ -16,6 +19,7 @@ import com.zhouyou.http.model.HttpParams;
  */
 public class MyApplication extends Application {
     public static boolean isOpenLog = true;
+    public static Handler mHandler = new Handler(Looper.getMainLooper());//主线程handler
 
     @Override
     public void onCreate() {

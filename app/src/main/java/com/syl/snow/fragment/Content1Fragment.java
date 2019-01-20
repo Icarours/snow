@@ -47,7 +47,8 @@ public class Content1Fragment extends BaseFragment {
         mList.add(new TitleBean(4,"RecyclerView", "RecyclerView侧滑菜单"));
         mList.add(new TitleBean(5,"RecyclerView", "RecyclerView侧滑菜单2"));
         mList.add(new TitleBean(6,"自定义View", "自定义View"));
-        mList.add(new TitleBean(7,"Android Jetpack", "ViewModule和LiveData"));
+        mList.add(new TitleBean(7,"Android Jetpack1", "ViewModule和LiveData"));
+        mList.add(new TitleBean(8,"Android Jetpack2", "Room数据库,从数据库加载数据RecyclerView"));
         for (int i = 100; i < 140; i++) {
             mList.add(new TitleBean(i,"title--" + i, "desc--" + i));
         }
