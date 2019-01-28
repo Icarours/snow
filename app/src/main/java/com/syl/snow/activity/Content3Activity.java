@@ -1,5 +1,6 @@
 package com.syl.snow.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.FrameLayout;
@@ -7,7 +8,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.syl.snow.R;
-import com.syl.snow.fragment.content3.Text3Fragment;
+import com.syl.snow.bean.TitleBean;
+import com.syl.snow.fragment.content1.Demo1Fragment;
+import com.syl.snow.fragment.content3.SavePicFragment;
+import com.syl.snow.fragment.content3.StringFormatFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -32,10 +36,34 @@ public class Content3Activity extends AppCompatActivity {
         setContentView(R.layout.activity_content3);
         ButterKnife.bind(this);
         initToolBar();
-        FragmentManager supportFragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = supportFragmentManager.beginTransaction();
-        transaction.replace(R.id.fl_content3,new Text3Fragment());
-        transaction.commit();
+        Intent intent = getIntent();
+        TitleBean titleBean = (TitleBean) intent.getSerializableExtra("title");
+        mToolbar.setTitle(titleBean.getTitle());
+        mToolbar.setSubtitle(titleBean.getDescription());
+        initFragment(titleBean);
+    }
+
+    private void initFragment(TitleBean titleBean) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        switch (titleBean.getId()) {
+            case 0:
+                transaction.replace(R.id.fl_content3, new StringFormatFragment());
+                transaction.commit();
+                break;
+            case 1:
+                transaction.replace(R.id.fl_content3, new SavePicFragment());
+                transaction.commit();
+                break;
+            default:
+                Demo1Fragment fragment = new Demo1Fragment();
+                transaction.replace(R.id.fl_content3, fragment);
+                Bundle args = new Bundle();
+                args.putSerializable("title", titleBean);
+                fragment.setArguments(args);
+                transaction.commit();
+                break;
+        }
     }
 
     private void initToolBar() {

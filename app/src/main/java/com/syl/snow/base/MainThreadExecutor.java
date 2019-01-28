@@ -8,7 +8,7 @@ import java.util.concurrent.Executor;
 /**
  * Created by Bright on 2019/1/19.
  *
- * @Describe
+ * @Describe 主线程线程池
  * @Called
  */
 

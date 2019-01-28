@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 /**
  * Created by Bright on 2019/1/20.
  *
- * @Describe
+ * @Describe Room数据库
  * @Called
  */
 @Entity(tableName = "user")

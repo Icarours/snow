@@ -39,7 +39,9 @@ public class Content3Fragment extends BaseFragment {
     @Override
     public void initData() {
         mList = new ArrayList<>();
-        for (int i = 0; i < 60; i++) {
+        mList.add(new TitleBean(0, "格式化字符串", "String.format()用法"));
+        mList.add(new TitleBean(1, "Android截图", "Android截图并保存图片到本地"));
+        for (int i = 20; i < 100; i++) {
             mList.add(new TitleBean(i, "content3 title--" + i, "content3 desc--" + i));
         }
     }
