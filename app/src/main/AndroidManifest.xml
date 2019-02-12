@@ -39,6 +39,8 @@
         </activity>
         <activity android:name=".activity.LiveDataActivity">
         </activity>
+        <activity android:name=".activity.DataBindingActivity">
+        </activity>
     </application>
 
 </manifest>
