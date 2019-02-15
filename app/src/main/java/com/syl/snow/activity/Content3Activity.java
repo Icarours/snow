@@ -11,6 +11,7 @@ import com.syl.snow.R;
 import com.syl.snow.bean.TitleBean;
 import com.syl.snow.fragment.content1.Demo1Fragment;
 import com.syl.snow.fragment.content3.DataBindingFragment;
+import com.syl.snow.fragment.content3.DatePickerDialog2Fragment;
 import com.syl.snow.fragment.content3.SavePicFragment;
 import com.syl.snow.fragment.content3.StringFormatFragment;
 
@@ -58,6 +59,10 @@ public class Content3Activity extends AppCompatActivity {
                 break;
             case 2:
                 transaction.replace(R.id.fl_content3, new DataBindingFragment());
+                transaction.commit();
+                break;
+            case 3:
+                transaction.replace(R.id.fl_content3, new DatePickerDialog2Fragment());
                 transaction.commit();
                 break;
             default:

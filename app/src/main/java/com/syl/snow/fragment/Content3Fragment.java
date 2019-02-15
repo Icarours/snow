@@ -42,6 +42,7 @@ public class Content3Fragment extends BaseFragment {
         mList.add(new TitleBean(0, "格式化字符串", "String.format()用法"));
         mList.add(new TitleBean(1, "Android截图", "Android截图并保存图片到本地"));
         mList.add(new TitleBean(2, "jetpack data binding", "data binding"));
+        mList.add(new TitleBean(3, "日期选择器(只有年月,没有日)", "DatePickerDialog "));
         for (int i = 20; i < 100; i++) {
             mList.add(new TitleBean(i, "content3 title--" + i, "content3 desc--" + i));
         }
