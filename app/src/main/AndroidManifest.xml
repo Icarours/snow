@@ -43,6 +43,9 @@
         </activity>
         <activity android:name=".activity.BottomNavigationActivity">
         </activity>
+        <activity android:name=".activity.Content4Activity"/>
+        <activity android:name=".activity.ChartActivity">
+        </activity>
     </application>
 
 </manifest>

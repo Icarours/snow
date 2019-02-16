@@ -38,7 +38,7 @@ public class Demo1Fragment extends BaseFragment {
         View rootView = inflater.inflate(R.layout.fragment_demo1, container, false);
         ButterKnife.bind(this, rootView);
 
-        Bundle bundle = this.getArguments();
+        Bundle bundle = getArguments();
         TitleBean titleBean = (TitleBean) bundle.getSerializable("title");
         mTvDemo1.setText(titleBean.getTitle() + "\r\n" + titleBean.getDescription());
 

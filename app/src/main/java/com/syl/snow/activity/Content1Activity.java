@@ -11,10 +11,13 @@ import com.syl.snow.R;
 import com.syl.snow.bean.TitleBean;
 import com.syl.snow.fragment.content1.Demo1Fragment;
 import com.syl.snow.fragment.content1.DialogDemoFragment;
+import com.syl.snow.fragment.content1.DisplayMetricFragment;
 import com.syl.snow.fragment.content1.Http1Fragment;
 import com.syl.snow.fragment.content1.ImageFragment;
 import com.syl.snow.fragment.content1.JetPack1Fragment;
+import com.syl.snow.fragment.content1.MPAndroidChartFragment;
 import com.syl.snow.fragment.content1.MaterialDesignFragment;
+import com.syl.snow.fragment.content1.MobileFragment;
 import com.syl.snow.fragment.content1.PassValueFragment;
 import com.syl.snow.fragment.content1.RoomFragment;
 import com.syl.snow.fragment.content1.Rv1Fragment;
@@ -107,9 +110,21 @@ public class Content1Activity extends AppCompatActivity {
                 transaction.replace(R.id.fl_content1, valueFragment);
                 Bundle argsv = new Bundle();
                 argsv.putSerializable("title", titleBean);
-                argsv.putString("key1","value1");
-                argsv.putString("key2","value2");
+                argsv.putString("key1", "value1");
+                argsv.putString("key2", "value2");
                 valueFragment.setArguments(argsv);
+                transaction.commit();
+                break;
+            case 11:
+                transaction.replace(R.id.fl_content1, new MobileFragment());
+                transaction.commit();
+                break;
+            case 12:
+                transaction.replace(R.id.fl_content1, new DisplayMetricFragment());
+                transaction.commit();
+                break;
+            case 13:
+                transaction.replace(R.id.fl_content1, new MPAndroidChartFragment());
                 transaction.commit();
                 break;
             default:

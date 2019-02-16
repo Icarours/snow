@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
         app:subtitle="SubTitle"
+        app:logo="@drawable/ic_android_black_24dp"
         app:subtitleTextColor="#ffffff"
         app:title="Title"
         app:titleTextColor="#ffffff">

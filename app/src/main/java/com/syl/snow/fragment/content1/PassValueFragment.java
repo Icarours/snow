@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
  * Created by Bright on 2019/2/16.
  *
  * @Describe
+ * Activity传值给Fragment1
  * @Called
  */
 public class PassValueFragment extends BaseFragment {

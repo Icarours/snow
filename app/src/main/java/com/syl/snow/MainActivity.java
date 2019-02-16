@@ -2,11 +2,13 @@ package com.syl.snow;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.Window;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.syl.snow.fragment.Content1Fragment;
 import com.syl.snow.fragment.Content2Fragment;
 import com.syl.snow.fragment.Content3Fragment;
+import com.syl.snow.fragment.Content4Fragment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     transaction.commit();
                     return true;
                 case R.id.navigation_forth:
-                    transaction.replace(R.id.fl_content, new Content3Fragment());
+                    transaction.replace(R.id.fl_content, new Content4Fragment());
                     transaction.commit();
                     return true;
             }
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();

@@ -7,10 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
 import com.syl.snow.R;
 import com.syl.snow.activity.Content1Activity;
+import com.syl.snow.adpater.ContentAdapter;
 import com.syl.snow.base.BaseFragment;
 import com.syl.snow.bean.TitleBean;
 import com.syl.snow.view.RecyclerViewDivider;
@@ -50,7 +49,10 @@ public class Content1Fragment extends BaseFragment {
         mList.add(new TitleBean(7,"Android Jetpack1", "ViewModule和LiveData"));
         mList.add(new TitleBean(8,"Android Jetpack2", "Room数据库,从数据库加载数据RecyclerView"));
         mList.add(new TitleBean(9,"material design", "material design控件"));
-        mList.add(new TitleBean(10,"Fragment传值", "Fragment传值"));
+        mList.add(new TitleBean(10,"Fragment传值", "Activity传值给Fragment1"));
+        mList.add(new TitleBean(11,"获取当前手机的参数", "获取当前手机的参数"));
+        mList.add(new TitleBean(12,"获取当前手机屏幕宽高", "屏幕宽高"));
+        mList.add(new TitleBean(13,"强大的Android自定义统计图表控件", "强大的Android自定义统计图表控件"));
         for (int i = 100; i < 140; i++) {
             mList.add(new TitleBean(i,"title--" + i, "desc--" + i));
         }
@@ -67,7 +69,7 @@ public class Content1Fragment extends BaseFragment {
         RecyclerViewDivider itemDecoration = new RecyclerViewDivider(getContext(), DividerItemDecoration.VERTICAL, 1, 0xffff0000);
         mRvTitle1.addItemDecoration(itemDecoration);
 
-        Content1Adapter adapter = new Content1Adapter(R.layout.rv_title, mList);
+        ContentAdapter adapter = new ContentAdapter(R.layout.rv_title, mList);
         mRvTitle1.setAdapter(adapter);
         adapter.setOnItemClickListener((adapter1, view, position) -> {
             Intent intent = new Intent(getContext(),Content1Activity.class);
@@ -82,17 +84,5 @@ public class Content1Fragment extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
-    }
-
-    class Content1Adapter extends BaseQuickAdapter<TitleBean, BaseViewHolder> {
-        public Content1Adapter(int layoutResId, @Nullable List<TitleBean> data) {
-            super(layoutResId, data);
-        }
-
-        @Override
-        protected void convert(BaseViewHolder helper, TitleBean item) {
-            helper.setText(R.id.tv_title, item.getTitle())
-                    .setText(R.id.tv_desc, item.getDescription());
-        }
     }
 }

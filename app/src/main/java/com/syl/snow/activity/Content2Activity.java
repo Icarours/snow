@@ -1,5 +1,6 @@
 package com.syl.snow.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.FrameLayout;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.syl.snow.R;
+import com.syl.snow.bean.TitleBean;
 import com.syl.snow.fragment.content2.Text2Fragment;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,9 +40,17 @@ public class Content2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_content2);
         ButterKnife.bind(this);
         initToolBar();
+        Intent intent = getIntent();
+        TitleBean titleBean = (TitleBean) intent.getSerializableExtra("title");
+        mToolbar.setTitle(titleBean.getTitle());
+        mToolbar.setSubtitle(titleBean.getDescription());
         FragmentManager supportFragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = supportFragmentManager.beginTransaction();
-        transaction.replace(R.id.fl_content2,new Text2Fragment());
+        Text2Fragment fragment = new Text2Fragment();
+        Bundle args = new Bundle();
+        args.putSerializable("title",titleBean);
+        fragment.setArguments(args);
+        transaction.replace(R.id.fl_content2, fragment);
         transaction.commit();
     }
 

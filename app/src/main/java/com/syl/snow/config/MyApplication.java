@@ -1,14 +1,19 @@
 package com.syl.snow.config;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Process;
 
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.cache.converter.SerializableDiskConverter;
 import com.zhouyou.http.cache.model.CacheMode;
 import com.zhouyou.http.model.HttpHeaders;
 import com.zhouyou.http.model.HttpParams;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -20,10 +25,56 @@ import com.zhouyou.http.model.HttpParams;
 public class MyApplication extends Application {
     public static boolean isOpenLog = true;
     public static Handler mHandler = new Handler(Looper.getMainLooper());//主线程handler
+    private static Context mContext;
+    private static Handler mMainThreadHandler;
+    private static int mMainThreadId;
+    private Map<String, String> mMemProtocolMap = new HashMap<>();
 
+    public Map<String, String> getProtocolMap() {
+        return mMemProtocolMap;
+    }
+    /*------------------ 提供对外访问变量的方法(只需要创建一次) -----------------*/
+
+    /**
+     * 得到application全局的上下文Context
+     *
+     * @return
+     */
+    public static Context getContext() {
+        return mContext;
+    }
+
+    /**
+     * 得到application全局的主线程mMainThreadHandler
+     *
+     * @return
+     */
+    public static Handler getMainThreadHandler() {
+        return mMainThreadHandler;
+    }
+
+    /**
+     * 得到application全局的主线程mMainThreadId
+     *
+     * @return
+     */
+    public static int getMainThreadId() {
+        return mMainThreadId;
+    }
     @Override
     public void onCreate() {
         super.onCreate();
+        //1.application级别的上下文
+        mContext = getApplicationContext();
+        //2,主线程的id
+        mMainThreadId = Process.myTid();
+        /**
+         * Process.myTid();Thread
+         * Process.myUid();User
+         * Process.myPid();Process
+         */
+        //3.Handler
+        mMainThreadHandler = new Handler();
 
         EasyHttp.init(this);//默认初始化,必须调用
 

@@ -7,10 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
 import com.syl.snow.R;
 import com.syl.snow.activity.Content3Activity;
+import com.syl.snow.adpater.ContentAdapter;
 import com.syl.snow.base.BaseFragment;
 import com.syl.snow.bean.TitleBean;
 
@@ -57,7 +56,7 @@ public class Content3Fragment extends BaseFragment {
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         mRvTitle3.setLayoutManager(linearLayoutManager);
         mRvTitle3.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        Content3Adapter adapter = new Content3Adapter(R.layout.rv_title, mList);
+        ContentAdapter adapter = new ContentAdapter(R.layout.rv_title, mList);
         mRvTitle3.setAdapter(adapter);
         adapter.setOnItemClickListener((adapter1, view, position) -> {
             Intent intent = new Intent(getContext(), Content3Activity.class);
@@ -66,18 +65,6 @@ public class Content3Fragment extends BaseFragment {
             Toast.makeText(getContext(), "clicked---" + position, Toast.LENGTH_SHORT).show();
         });
         return rootView;
-    }
-
-    class Content3Adapter extends BaseQuickAdapter<TitleBean, BaseViewHolder> {
-        public Content3Adapter(int layoutResId, @Nullable List<TitleBean> data) {
-            super(layoutResId, data);
-        }
-
-        @Override
-        protected void convert(BaseViewHolder helper, TitleBean item) {
-            helper.setText(R.id.tv_title, item.getTitle())
-                    .setText(R.id.tv_desc, item.getDescription());
-        }
     }
 
     @Override

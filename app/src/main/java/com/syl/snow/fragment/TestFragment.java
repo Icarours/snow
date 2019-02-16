@@ -10,7 +10,12 @@ import com.syl.snow.R;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
+/**
+ * author   Bright
+ * date     2019/2/16 18:10
+ * desc
+ * Activity传值到Fragment2
+ */
 public class TestFragment extends Fragment {
 
     public static TestFragment newInstance(String name) {
@@ -24,19 +29,13 @@ public class TestFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_test, container, false);
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        TextView tv = (TextView) view.findViewById(R.id.tv);
-
+        View RootView = inflater.inflate(R.layout.fragment_test, container, false);
+        TextView tv = RootView.findViewById(R.id.tv);
         Bundle bundle = getArguments();
         if (bundle != null) {
             String name = bundle.get("name").toString();
             tv.setText(name);
         }
+        return RootView;
     }
 }

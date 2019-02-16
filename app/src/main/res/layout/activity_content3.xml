@@ -15,6 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:logo="@drawable/ic_android_black_24dp"
         app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
         app:subtitleTextColor="#ffffff"
         app:title="Title"
