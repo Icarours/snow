@@ -41,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
                     transaction.replace(R.id.fl_content, new Content3Fragment());
                     transaction.commit();
                     return true;
+                case R.id.navigation_forth:
+                    transaction.replace(R.id.fl_content, new Content3Fragment());
+                    transaction.commit();
+                    return true;
             }
             return false;
         }
@@ -57,5 +61,4 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
-
 }

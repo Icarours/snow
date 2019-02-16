@@ -32,4 +32,13 @@
        <!-- <item name="@android:windowEnterAnimation">@anim/normal_dialog_enter</item>
         <item name="@android:windowExitAnimation">@anim/normal_dialog_exit</item>  -->
     </style>
+
+    <style name="MyBottomNavigationStyle" parent="Widget.Design.BottomNavigationView">
+        <!--ripple的颜色-->
+        <item name="colorControlHighlight">@color/colorAccent</item>
+        <!--选中时的颜色-->
+        <item name="colorPrimary">@android:color/holo_green_dark</item>
+        <!--未选中的颜色-->
+        <item name="android:textColorSecondary">@android:color/black</item>
+    </style>
 </resources>

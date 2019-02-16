@@ -14,6 +14,8 @@ import com.syl.snow.fragment.content1.DialogDemoFragment;
 import com.syl.snow.fragment.content1.Http1Fragment;
 import com.syl.snow.fragment.content1.ImageFragment;
 import com.syl.snow.fragment.content1.JetPack1Fragment;
+import com.syl.snow.fragment.content1.MaterialDesignFragment;
+import com.syl.snow.fragment.content1.PassValueFragment;
 import com.syl.snow.fragment.content1.RoomFragment;
 import com.syl.snow.fragment.content1.Rv1Fragment;
 import com.syl.snow.fragment.content1.Rv2Fragment;
@@ -94,6 +96,20 @@ public class Content1Activity extends AppCompatActivity {
                 break;
             case 8:
                 transaction.replace(R.id.fl_content1, new RoomFragment());
+                transaction.commit();
+                break;
+            case 9:
+                transaction.replace(R.id.fl_content1, new MaterialDesignFragment());
+                transaction.commit();
+                break;
+            case 10:
+                PassValueFragment valueFragment = new PassValueFragment();
+                transaction.replace(R.id.fl_content1, valueFragment);
+                Bundle argsv = new Bundle();
+                argsv.putSerializable("title", titleBean);
+                argsv.putString("key1","value1");
+                argsv.putString("key2","value2");
+                valueFragment.setArguments(argsv);
                 transaction.commit();
                 break;
             default:
