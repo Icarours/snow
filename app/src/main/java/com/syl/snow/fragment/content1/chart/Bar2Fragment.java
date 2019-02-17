@@ -1,6 +1,6 @@
 package com.syl.snow.fragment.content1.chart;
 
-import android.graphics.RectF;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -17,20 +18,16 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.MPPointF;
 import com.syl.snow.R;
 import com.syl.snow.utils.DayAxisValueFormatter;
-import com.syl.snow.utils.MyAxisValueFormatter;
 import com.syl.snow.view.XYMarkerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -45,188 +42,179 @@ public class Bar2Fragment extends BaseChartFragment implements OnChartValueSelec
     TextView mTvContent;
     @Bind(R.id.pie_chart)
     BarChart mChart;
+    private ArrayList<String> mTitles = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_bar, null);
+        View rootView = inflater.inflate(R.layout.fragment_bar2, null);
         ButterKnife.bind(this, rootView);
 
-        mTvContent.setText("柱形图");
+        mTvContent.setText("柱状图(多条)");
+
         initChart();
 
         return rootView;
     }
 
     private void initChart() {
+        //设置绘制边界
+        mChart.setDrawBorders(false);
+
         mChart.setOnChartValueSelectedListener(this);
-
-        mChart.setDrawBarShadow(false);
-        mChart.setDrawValueAboveBar(true);
-
         mChart.getDescription().setEnabled(true);
 
-        // if more than 60 entries are displayed in the chart, no values will be
-        // drawn
-        mChart.setMaxVisibleValueCount(60);
+//        mChart.setDrawBorders(true);
 
-        // scaling can now only be done on x- and y-axis separately
+        // scaling can now only be done on x- and y-axis separately,图表可以缩放,true,所有位置都可以缩放;false,只有x轴,y轴可以缩放
         mChart.setPinchZoom(false);
 
-        mChart.setDrawGridBackground(false);
-        // mChart.setDrawYLabels(false);
+        mChart.setDrawBarShadow(false);
 
+        mChart.setDrawGridBackground(true);
         IAxisValueFormatter xAxisFormatter = new DayAxisValueFormatter(mChart);
-
-        XAxis xAxis = mChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTypeface(mTfLight);
-        xAxis.setDrawGridLines(false);
-        xAxis.setGranularity(1f); // only intervals of 1 day
-        xAxis.setLabelCount(7);
-        xAxis.setValueFormatter(xAxisFormatter);
-
-        IAxisValueFormatter custom = new MyAxisValueFormatter();
-
-        //y轴,左轴
-        YAxis leftAxis = mChart.getAxisLeft();
-        leftAxis.setTypeface(mTfLight);
-        leftAxis.setLabelCount(8, false);
-        leftAxis.setValueFormatter(custom);
-        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
-        leftAxis.setSpaceTop(15f);
-        leftAxis.setAxisMinimum(0f); // getActivity() replaces setStartAtZero(true)
-
-        //y轴,右轴
-        YAxis rightAxis = mChart.getAxisRight();
-        rightAxis.setDrawGridLines(false);
-        rightAxis.setTypeface(mTfLight);
-        rightAxis.setLabelCount(8, false);
-        rightAxis.setValueFormatter(custom);
-        rightAxis.setSpaceTop(15f);
-        rightAxis.setAxisMinimum(0f); // getActivity() replaces setStartAtZero(true)
-
-        Legend l = mChart.getLegend();
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
-        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
-        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-        l.setDrawInside(false);
-        l.setForm(Legend.LegendForm.SQUARE);
-        l.setFormSize(9f);
-        l.setTextSize(11f);
-        l.setXEntrySpace(4f);
-        // l.setExtra(ColorTemplate.VORDIPLOM_COLORS, new String[] { "abc",
-        // "def", "ghj", "ikl", "mno" });
-        // l.setCustom(ColorTemplate.VORDIPLOM_COLORS, new String[] { "abc",
-        // "def", "ghj", "ikl", "mno" });
-
+        // create a custom MarkerView (extend MarkerView) and specify the layout
+        // to use for it
         XYMarkerView mv = new XYMarkerView(getActivity(), xAxisFormatter);
         mv.setChartView(mChart); // For bounds control
         mChart.setMarker(mv); // Set the marker to the chart
 
-        setData(8, 50);
+
+        Legend l = mChart.getLegend();
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+        l.setDrawInside(true);
+        l.setTypeface(mTfLight);
+        l.setYOffset(0f);
+        l.setXOffset(10f);
+        l.setYEntrySpace(0f);
+        l.setTextSize(8f);
+
+        for (int i = 1; i <= 12; i++) {
+            mTitles.add(i + "月");
+        }
+        //X轴
+        XAxis xAxis = mChart.getXAxis();
+        xAxis.setTypeface(mTfLight);
+        xAxis.setGranularity(1f);
+        xAxis.setCenterAxisLabels(true);
+        //        2.设置X轴的位置（默认在上方）：
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//值：BOTTOM,BOTH_SIDED,BOTTOM_INSIDE,TOP,TOP_INSIDE
+        //        4.设置X轴的刻度数量,第二个参数表示是否平均分配 如果为true则按比例分为12个点、如果为false则适配X刻度的值来分配点，可能没有12个点。
+        xAxis.setLabelCount(12, false);
+        //5.设置X轴的值（最小值、最大值、然后会根据设置的刻度数量自动分配刻度显示）
+        xAxis.setAxisMinimum(0f);
+        xAxis.setAxisMaximum(12f);
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+//                return String.valueOf((int) value);
+                int index = (int) value;
+                if (index < 0 || index > mTitles.size() - 1) {
+                    return "";
+                } else {
+                    return mTitles.get(index);
+                }
+            }
+        });
+
+        YAxis leftAxis = mChart.getAxisLeft();
+        leftAxis.setTypeface(mTfLight);
+        leftAxis.setValueFormatter(new LargeValueFormatter());
+        leftAxis.setDrawGridLines(true);//(网格线)平行于x轴的数值线,例如y=20,y=40,y=60....
+        leftAxis.setSpaceTop(35f);
+        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+
+        mChart.getAxisRight().setEnabled(false);
+
+        setData(12, 100);
     }
 
     private void setData(int count, float range) {
+        float groupSpace = 0.08f;
+        float barSpace = 0.03f; // x4 DataSet
+        float barWidth = 0.2f; // x4 DataSet
+        // (0.2 + 0.03) * 4 + 0.08 = 1.00 -> interval per "group"
 
-        float start = 1f;
+        int groupCount = 12 + 1;
+        int startYear = 0;
+//        int endYear = startYear + groupCount;
 
-        ArrayList<BarEntry> yVals1 = new ArrayList<>();
 
-        for (int i = (int) start; i < start + count + 1; i++) {
-            float mult = (range + 1);
-            float val = (float) (Math.random() * mult);
+        ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> yVals2 = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> yVals3 = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> yVals4 = new ArrayList<BarEntry>();
 
-            if (Math.random() * 100 < 25) {
-                yVals1.add(new BarEntry(i, val, getResources().getDrawable(R.drawable.ic_add_black_24dp)));
-            } else {
-                yVals1.add(new BarEntry(i, val));
-            }
+        float randomMultiplier = 100f;
+
+        for (int i = 0; i < 12; i++) {
+            yVals1.add(new BarEntry(i, (float) (Math.random() * randomMultiplier)));
+            yVals2.add(new BarEntry(i, (float) (Math.random() * randomMultiplier)));
+            yVals3.add(new BarEntry(i, (float) (Math.random() * randomMultiplier)));
+            yVals4.add(new BarEntry(i, (float) (Math.random() * randomMultiplier)));
         }
 
-        BarDataSet set1;
+        BarDataSet set1, set2, set3, set4;
 
         if (mChart.getData() != null && mChart.getData().getDataSetCount() > 0) {
+
             set1 = (BarDataSet) mChart.getData().getDataSetByIndex(0);
+            set2 = (BarDataSet) mChart.getData().getDataSetByIndex(1);
+            set3 = (BarDataSet) mChart.getData().getDataSetByIndex(2);
+            set4 = (BarDataSet) mChart.getData().getDataSetByIndex(3);
             set1.setValues(yVals1);
+            set2.setValues(yVals2);
+            set3.setValues(yVals3);
+            set4.setValues(yVals4);
             mChart.getData().notifyDataChanged();
             mChart.notifyDataSetChanged();
+
         } else {
-            set1 = new BarDataSet(yVals1, "The year 2017");
+            // create 4 DataSets
+            set1 = new BarDataSet(yVals1, "Company A");
+            set1.setColor(Color.rgb(104, 241, 175));
+            set2 = new BarDataSet(yVals2, "Company B");
+            set2.setColor(Color.rgb(164, 228, 251));
+            set3 = new BarDataSet(yVals3, "Company C");
+            set3.setColor(Color.rgb(242, 247, 158));
+            set4 = new BarDataSet(yVals4, "Company D");
+            set4.setColor(Color.rgb(255, 102, 0));
 
-            set1.setDrawIcons(false);
-
-//            set1.setColors(ColorTemplate.MATERIAL_COLORS);
-
-            /*int startColor = ContextCompat.getColor(getActivity(), android.R.color.holo_blue_dark);
-            int endColor = ContextCompat.getColor(getActivity(), android.R.color.holo_blue_bright);
-            set1.setGradientColor(startColor, endColor);*/
-
-            int startColor1 = ContextCompat.getColor(getActivity(), android.R.color.holo_orange_light);
-            int startColor2 = ContextCompat.getColor(getActivity(), android.R.color.holo_blue_light);
-            int startColor3 = ContextCompat.getColor(getActivity(), android.R.color.holo_orange_light);
-            int startColor4 = ContextCompat.getColor(getActivity(), android.R.color.holo_green_light);
-            int startColor5 = ContextCompat.getColor(getActivity(), android.R.color.holo_red_light);
-            int endColor1 = ContextCompat.getColor(getActivity(), android.R.color.holo_blue_dark);
-            int endColor2 = ContextCompat.getColor(getActivity(), android.R.color.holo_purple);
-            int endColor3 = ContextCompat.getColor(getActivity(), android.R.color.holo_green_dark);
-            int endColor4 = ContextCompat.getColor(getActivity(), android.R.color.holo_red_dark);
-            int endColor5 = ContextCompat.getColor(getActivity(), android.R.color.holo_orange_dark);
-
-            List<Integer> gradientColors = new ArrayList<>();
-            gradientColors.add(startColor1);
-            gradientColors.add(startColor2);
-            gradientColors.add(startColor3);
-            gradientColors.add(startColor4);
-            gradientColors.add(startColor5);
-            gradientColors.add(endColor1);
-            gradientColors.add(endColor2);
-            gradientColors.add(endColor3);
-            gradientColors.add(endColor4);
-            gradientColors.add(endColor5);
-
-            set1.setColors(gradientColors);
-
-            ArrayList<IBarDataSet> dataSets = new ArrayList<>();
-            dataSets.add(set1);
-
-            BarData data = new BarData(dataSets);
-            data.setValueTextSize(10f);
+            BarData data = new BarData(set1, set2, set3, set4);
+            data.setValueFormatter(new LargeValueFormatter());
             data.setValueTypeface(mTfLight);
-            data.setBarWidth(0.9f);
 
             mChart.setData(data);
         }
+
+        // specify the width each bar should have
+        mChart.getBarData().setBarWidth(barWidth);
+
+        // restrict the x-axis range
+//        mChart.getXAxis().setAxisMinimum(startYear);
+
+        // barData.getGroupWith(...) is a helper that calculates the width each group needs based on the provided parameters
+//        mChart.getXAxis().setAxisMaximum(startYear + mChart.getBarData().getGroupWidth(groupSpace, barSpace) * groupCount);
+        mChart.groupBars(startYear, groupSpace, barSpace);
+        mChart.invalidate();
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(getActivity());
+        ButterKnife.unbind(this);
     }
 
-    protected RectF mOnValueSelectedRectF = new RectF();
-
+    @Override
     public void onValueSelected(Entry e, Highlight h) {
-
-        if (e == null)
-            return;
-
-        RectF bounds = mOnValueSelectedRectF;
-        mChart.getBarBounds((BarEntry) e, bounds);
-        MPPointF position = mChart.getPosition(e, YAxis.AxisDependency.LEFT);
-
-        Log.i("bounds", bounds.toString());
-        Log.i("position", position.toString());
-
-        Log.i("x-index",
-                "low: " + mChart.getLowestVisibleX() + ", high: "
-                        + mChart.getHighestVisibleX());
-
-        MPPointF.recycleInstance(position);
+        Log.i("Activity", "Selected: " + e.toString() + ", dataSet: " + h.getDataSetIndex());
     }
 
     @Override
     public void onNothingSelected() {
+        Log.i("Activity", "Nothing selected.");
     }
 }

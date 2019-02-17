@@ -52,10 +52,13 @@ public class Content1Fragment extends BaseFragment {
         mList.add(new TitleBean(10,"Fragment传值", "Activity传值给Fragment1"));
         mList.add(new TitleBean(11,"获取当前手机的参数", "获取当前手机的参数"));
         mList.add(new TitleBean(12,"获取当前手机屏幕宽高", "屏幕宽高"));
-        mList.add(new TitleBean(13,"强大的Android自定义统计图表控件", "强大的Android自定义统计图表控件"));
-        for (int i = 100; i < 140; i++) {
-            mList.add(new TitleBean(i,"title--" + i, "desc--" + i));
-        }
+        mList.add(new TitleBean(13,"Android自定义统计图表控件", "强大的Android自定义统计图表控件"));
+        mList.add(new TitleBean(14,"弹出式菜单和ToolBar", "弹出式菜单和ToolBar"));
+        mList.add(new TitleBean(15,"ViewPager+TabLayout+Fragment", "ViewPager+TabLayout+Fragment"));
+        mList.add(new TitleBean(16,"自定义饼形统计图", "自定义饼形统计图"));
+        mList.add(new TitleBean(17,"Glide加载网络图片", "Glide加载网络图片"));
+        mList.add(new TitleBean(18,"加载网络图片", "加载网络图片"));
+        mList.add(new TitleBean(19,"滚轮选择器", "滚轮选择器"));
     }
 
     @Nullable

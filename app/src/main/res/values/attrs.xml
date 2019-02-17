@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--统计图MPChart-->
     <declare-styleable name="ArrowTextView">
         <attr name="radius" format="dimension" />
         <attr name="arrowWidth" format="dimension" />
         <attr name="arrowHeight" format="dimension" />
         <attr name="bg" format="color" />
+    </declare-styleable>
+
+    <!--圆角图片-->
+    <declare-styleable name="Custom_Round_Image_View">
+        <attr name="round_image_radius" format="dimension"/>
+        <attr name="left_top_radius" format="dimension"/>
+        <attr name="right_top_radius" format="dimension"/>
+        <attr name="right_bottom_radius" format="dimension"/>
+        <attr name="left_bottom_radius" format="dimension"/>
     </declare-styleable>
 </resources>

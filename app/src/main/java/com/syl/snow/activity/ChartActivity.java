@@ -16,6 +16,7 @@ import com.syl.snow.fragment.content1.chart.Pie3Fragment;
 import com.syl.snow.fragment.content1.chart.PieFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.Bind;
@@ -31,7 +32,8 @@ public class ChartActivity extends AppCompatActivity {
 
     @Bind(R.id.fl_chart)
     FrameLayout mFlChart;
-    private String mTitle;
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
     private int mChart_code;
 
     @Override
@@ -41,9 +43,10 @@ public class ChartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chart);
         ButterKnife.bind(this);
         Intent intent = getIntent();
-        mTitle = intent.getStringExtra("title");
+        String title = intent.getStringExtra("title");
         mChart_code = intent.getIntExtra("chart_code", 0);
-
+        mToolbar.setNavigationOnClickListener(v -> finish());
+        mToolbar.setTitle(title);
         initFragment();
     }
 

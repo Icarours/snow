@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp" android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp" android:text="view1"
+        android:layout_marginTop="16dp" android:text="圆矩形"
         android:textAllCaps="false" app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
     <Button
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp" android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp" android:text="view2"
+        android:layout_marginTop="16dp" android:text="变化的矩阵"
         android:textAllCaps="false" app:layout_constraintStart_toEndOf="@+id/btn_view1"
         app:layout_constraintTop_toTopOf="parent"/>
     <Button
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp" android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp" android:text="view3"
+        android:layout_marginTop="16dp" android:text="图片"
         android:textAllCaps="false" app:layout_constraintStart_toEndOf="@+id/btn_view2"
         app:layout_constraintTop_toTopOf="parent"/>
     <Button
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp" android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp" android:text="view4"
+        android:layout_marginTop="16dp" android:text="椭圆"
         android:textAllCaps="false" app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_view1"/>
     <Button
@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp" android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp" android:text="view5"
+        android:layout_marginTop="16dp" android:text="正多边形"
         android:textAllCaps="false" app:layout_constraintStart_toEndOf="@+id/btn_view4"
         app:layout_constraintTop_toBottomOf="@+id/btn_view2"/>
     <Button
@@ -51,23 +51,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp" android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp" android:text="view6"
+        android:layout_marginTop="16dp" android:text="叠加的圆"
         android:textAllCaps="false" app:layout_constraintStart_toEndOf="@+id/btn_view5"
         app:layout_constraintTop_toBottomOf="@+id/btn_view3"/>
     <Button
         android:id="@+id/btn_view7"
         android:layout_width="wrap_content"
-        android:textAllCaps="false"
-        android:layout_height="wrap_content" android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp" android:layout_marginTop="16dp"
-        android:text="view7" app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp" android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp" android:text="绘制文字"
+        android:textAllCaps="false" app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_view4"/>
     <Button
         android:id="@+id/btn_view8"
         android:layout_width="wrap_content"
-        android:textAllCaps="false"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp" android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp" android:text="绘制图片"
+        android:textAllCaps="false" app:layout_constraintStart_toEndOf="@+id/btn_view7"
+        app:layout_constraintTop_toBottomOf="@+id/btn_view5"/>
+    <Button
+        android:id="@+id/btn_view9"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp" android:layout_marginTop="16dp"
-        android:text="view8" app:layout_constraintStart_toEndOf="@+id/btn_view7"
-        app:layout_constraintTop_toBottomOf="@+id/btn_view5"/>
+        android:text="圆形统计图" app:layout_constraintStart_toEndOf="@+id/btn_view8"
+        app:layout_constraintTop_toBottomOf="@+id/btn_view6"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

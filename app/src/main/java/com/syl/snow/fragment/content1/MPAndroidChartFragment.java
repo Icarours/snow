@@ -17,6 +17,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.Bind;
@@ -40,6 +41,7 @@ public class MPAndroidChartFragment extends BaseFragment {
         ButterKnife.bind(this,rootView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
         mRvChart.setLayoutManager(linearLayoutManager);
+        mRvChart.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
         ChartAdapter chartAdapter = new ChartAdapter(R.layout.rv_item_single_text, mListTitle);
         mRvChart.setAdapter(chartAdapter);
         chartAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {

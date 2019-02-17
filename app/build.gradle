@@ -44,7 +44,15 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.31'
     //网络请求框架
     implementation 'com.zhouyou:rxeasyhttp:2.1.2'
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    //轮播图框架
+    implementation 'com.youth.banner:banner:1.4.9'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    //universalimageloader图片加载
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    //fresco图片加载
+    implementation 'com.facebook.fresco:fresco:0.9.0'
+    //picasso图片加载
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.github.SelfZhangTQ:TRecyclerView:2.5.4'//RecyclerView刷新,下拉刷新,上滑加载更多
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'//动态权限请求

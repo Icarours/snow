@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <Button
+        android:id="@+id/btn_glide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="glide" android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/btn_picassoo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="picasso" android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/btn_fresco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fresco"
+        android:textAllCaps="false" android:visibility="gone"/>
+    <Button
+        android:id="@+id/btn_uil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="url_image_loader"
+        android:textAllCaps="false" android:visibility="gone"/>
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        app:srcCompat="@drawable/mm4"/>
+</LinearLayout>
