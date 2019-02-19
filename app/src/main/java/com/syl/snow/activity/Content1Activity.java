@@ -9,10 +9,12 @@ import android.widget.Toast;
 
 import com.syl.snow.R;
 import com.syl.snow.bean.TitleBean;
+import com.syl.snow.fragment.FrameAnimationFragment;
 import com.syl.snow.fragment.content1.ArcFragment;
 import com.syl.snow.fragment.content1.Demo1Fragment;
 import com.syl.snow.fragment.content1.DialogDemoFragment;
 import com.syl.snow.fragment.content1.DisplayMetricFragment;
+import com.syl.snow.fragment.content1.DrawBoardFragment;
 import com.syl.snow.fragment.content1.GlideFragment;
 import com.syl.snow.fragment.content1.Http1Fragment;
 import com.syl.snow.fragment.content1.ImageFragment;
@@ -24,10 +26,12 @@ import com.syl.snow.fragment.content1.MobileFragment;
 import com.syl.snow.fragment.content1.PassValueFragment;
 import com.syl.snow.fragment.content1.PickViewFragment;
 import com.syl.snow.fragment.content1.PopFragment;
+import com.syl.snow.fragment.content1.PropertyAnimationFragment;
 import com.syl.snow.fragment.content1.RoomFragment;
 import com.syl.snow.fragment.content1.Rv1Fragment;
 import com.syl.snow.fragment.content1.Rv2Fragment;
 import com.syl.snow.fragment.content1.Rv3Fragment;
+import com.syl.snow.fragment.content1.ViewAnimationFragment;
 import com.syl.snow.fragment.content1.ViewFragment;
 import com.syl.snow.fragment.content1.VpTabFmFragment;
 
@@ -156,6 +160,25 @@ public class Content1Activity extends AppCompatActivity {
             case 19:
                 transaction.replace(R.id.fl_content1, new PickViewFragment());
                 transaction.commit();
+                break;
+            case 20:
+                transaction.replace(R.id.fl_content1, new ViewAnimationFragment());
+                transaction.commit();
+                break;
+            case 21:
+                transaction.replace(R.id.fl_content1, new PropertyAnimationFragment());
+                transaction.commit();
+                break;
+            case 22:
+                transaction.replace(R.id.fl_content1, new FrameAnimationFragment());
+                transaction.commit();
+                break;
+            case 23:
+                transaction.replace(R.id.fl_content1, new DrawBoardFragment());
+                transaction.commit();
+                break;
+            case 24:
+                startActivity(new Intent(getApplicationContext(), JZVideoActivity.class));
                 break;
             default:
                 Demo1Fragment fragment = new Demo1Fragment();

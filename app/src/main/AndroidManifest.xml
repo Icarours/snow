@@ -52,6 +52,10 @@
         <activity android:name=".activity.JsonDataActivity">
         </activity>
         <activity android:name=".activity.FragmentTestActivity"/>
+        <activity android:name=".activity.JZVideoActivity"
+                  android:configChanges="orientation|screenSize|keyboardHidden"
+                  android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

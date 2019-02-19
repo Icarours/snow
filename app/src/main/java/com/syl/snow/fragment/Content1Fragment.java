@@ -59,6 +59,11 @@ public class Content1Fragment extends BaseFragment {
         mList.add(new TitleBean(17,"Glide加载网络图片", "Glide加载网络图片"));
         mList.add(new TitleBean(18,"加载网络图片", "加载网络图片"));
         mList.add(new TitleBean(19,"滚轮选择器", "滚轮选择器"));
+        mList.add(new TitleBean(20,"View动画", "View动画"));
+        mList.add(new TitleBean(21,"属性动画", "PropertyAnimation"));
+        mList.add(new TitleBean(22,"逐帧动画", "FrameAnimation"));
+        mList.add(new TitleBean(23,"简易画板", "简易画板"));
+        mList.add(new TitleBean(24,"饺子播放器", "饺子播放器"));
     }
 
     @Nullable

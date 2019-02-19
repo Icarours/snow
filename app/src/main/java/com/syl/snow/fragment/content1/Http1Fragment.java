@@ -118,12 +118,12 @@ public class Http1Fragment extends BaseFragment {
                     String data = baseApi.getData();
                     if (data != null && !"".equals(data)) {
                         List<WarnMessage> warnMessages = JSONObject.parseArray(data, WarnMessage.class);
-                        LogUtils.d(TAG,"size=="+warnMessages.size());
+                        LogUtils.d(TAG, "size==" + warnMessages.size());
                         for (int i = 0; i < warnMessages.size(); i++) {
-                            LogUtils.d(TAG,warnMessages.get(i).toString()+"-------"+i);
+                            LogUtils.d(TAG, warnMessages.get(i).toString() + "-------" + i);
                         }
                     } else {
-                        LogUtils.d(TAG,"data 数据集为空");
+                        LogUtils.d(TAG, "data 数据集为空");
                     }
                 } else {
                     LogUtils.d(TAG, "code 返回值不是200");

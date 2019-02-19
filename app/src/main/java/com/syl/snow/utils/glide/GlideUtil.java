@@ -20,12 +20,10 @@ import androidx.annotation.Nullable;
 /**
  * Created by Bright on 2019/2/17.
  *
- * @Describe
+ * @Describe Glide工具类
  * @Called
  */
 public class GlideUtil {
-
-
     private static GlideUtil instance;
     RequestOptions options;
     Context mContext;
