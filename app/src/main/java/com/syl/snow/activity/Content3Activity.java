@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.syl.snow.R;
 import com.syl.snow.bean.TitleBean;
 import com.syl.snow.fragment.content1.Demo1Fragment;
+import com.syl.snow.fragment.content3.CalendarView2Fragment;
+import com.syl.snow.fragment.content3.CalendarViewFragment;
 import com.syl.snow.fragment.content3.DataBindingFragment;
 import com.syl.snow.fragment.content3.DatePickerDialog2Fragment;
 import com.syl.snow.fragment.content3.SavePicFragment;
@@ -63,6 +65,14 @@ public class Content3Activity extends AppCompatActivity {
                 break;
             case 3:
                 transaction.replace(R.id.fl_content3, new DatePickerDialog2Fragment());
+                transaction.commit();
+                break;
+            case 4:
+                transaction.replace(R.id.fl_content3, new CalendarViewFragment());
+                transaction.commit();
+                break;
+            case 5:
+                transaction.replace(R.id.fl_content3, new CalendarView2Fragment());
                 transaction.commit();
                 break;
             default:
