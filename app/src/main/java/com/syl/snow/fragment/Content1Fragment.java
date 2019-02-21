@@ -64,6 +64,8 @@ public class Content1Fragment extends BaseFragment {
         mList.add(new TitleBean(22,"逐帧动画", "FrameAnimation"));
         mList.add(new TitleBean(23,"简易画板", "简易画板"));
         mList.add(new TitleBean(24,"饺子播放器", "饺子播放器"));
+        mList.add(new TitleBean(25,"日期选择器", "Calendar"));
+        mList.add(new TitleBean(26,"CalendarRecyclerView,失败", "CalendarRecyclerViewF,失败"));
     }
 
     @Nullable

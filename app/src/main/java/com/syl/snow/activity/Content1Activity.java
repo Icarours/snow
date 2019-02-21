@@ -11,6 +11,7 @@ import com.syl.snow.R;
 import com.syl.snow.bean.TitleBean;
 import com.syl.snow.fragment.FrameAnimationFragment;
 import com.syl.snow.fragment.content1.ArcFragment;
+import com.syl.snow.fragment.content1.CalendarFragment;
 import com.syl.snow.fragment.content1.Demo1Fragment;
 import com.syl.snow.fragment.content1.DialogDemoFragment;
 import com.syl.snow.fragment.content1.DisplayMetricFragment;
@@ -34,6 +35,7 @@ import com.syl.snow.fragment.content1.Rv3Fragment;
 import com.syl.snow.fragment.content1.ViewAnimationFragment;
 import com.syl.snow.fragment.content1.ViewFragment;
 import com.syl.snow.fragment.content1.VpTabFmFragment;
+import com.syl.snow.fragment.content1.CalendarRecyclerViewF;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -179,6 +181,14 @@ public class Content1Activity extends AppCompatActivity {
                 break;
             case 24:
                 startActivity(new Intent(getApplicationContext(), JZVideoActivity.class));
+                break;
+            case 25:
+                transaction.replace(R.id.fl_content1, new CalendarFragment());
+                transaction.commit();
+                break;
+            case 26:
+                transaction.replace(R.id.fl_content1, new CalendarRecyclerViewF());
+                transaction.commit();
                 break;
             default:
                 Demo1Fragment fragment = new Demo1Fragment();

@@ -19,6 +19,12 @@ public class DayE implements Serializable, MultiItemEntity {
     public DayE() {
     }
 
+    public DayE(String day, String msg1, int itemType) {
+        this.day = day;
+        this.msg1 = msg1;
+        this.itemType = itemType;
+    }
+
     @Override
     public String toString() {
         return "DayE{" +
@@ -54,7 +60,7 @@ public class DayE implements Serializable, MultiItemEntity {
 
     @Override
     public int getItemType() {
-        return 0;
+        return itemType;
     }
 
     public void setItemType(int itemType) {

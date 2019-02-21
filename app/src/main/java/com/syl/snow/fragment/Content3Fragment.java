@@ -43,7 +43,7 @@ public class Content3Fragment extends BaseFragment {
         mList.add(new TitleBean(2, "jetpack data binding", "data binding"));
         mList.add(new TitleBean(3, "日期选择器(只有年月,没有日)", "DatePickerDialog"));
         mList.add(new TitleBean(4, "CalendarView", "日历控件 "));
-        mList.add(new TitleBean(5, "自定义日历控件", "使用RecyclerView自定义日历控件"));
+        mList.add(new TitleBean(5, "自定义日历控件,失败", "使用RecyclerView自定义日历控件"));
         for (int i = 20; i < 100; i++) {
             mList.add(new TitleBean(i, "content3 title--" + i, "content3 desc--" + i));
         }
