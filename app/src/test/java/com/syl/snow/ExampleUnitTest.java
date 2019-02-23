@@ -1,9 +1,14 @@
 package com.syl.snow;
 
+import com.alibaba.fastjson.JSONArray;
+import com.syl.snow.config.Constant;
+
 import org.junit.Test;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -14,8 +19,15 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
 //        assertEquals(4, 2 + 2);
-        int gapCount = getBetweenDays(new Date(2019, 1, 0), new Date(2019, 2, 0));
-        System.out.println(gapCount);
+//        int gapCount = getBetweenDays(new Date(2019, 1, 0), new Date(2019, 2, 0));
+//        System.out.println(gapCount);
+        Map<String, String> params = new HashMap<>();
+        String url = "http://cloud.lanlyc.cn/new_gongdi/warnMessage/getWarnMessageList";
+//        Params params = new Params(pageNumber + "", Constant.PAGE_SIZE);
+        params.put(Constant.MOBILE, "15989469069");
+        params.put("departmentId", "-1");
+//        String string = JSONObject.toJSONString(params);
+        System.out.println(JSONArray.toJSONString(params));
     }
 
     public int[] twoSum(int[] nums, int target) {

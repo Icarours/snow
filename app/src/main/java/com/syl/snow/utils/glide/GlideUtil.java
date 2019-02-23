@@ -145,20 +145,23 @@ public class GlideUtil {
         options.override(width, height);
         options.transform(new CornersTransform(radius));
 //        options.centerCrop(); //不能与圆角共存
-        Glide.with(mContext)
-                .load(url)
-                .apply(options)
-                .into(imageView);
-
+        if (mContext != null) {
+            Glide.with(mContext)
+                    .load(url)
+                    .apply(options)
+                    .into(imageView);
+        }
     }
 
 
     public void showImageRound(String url, final ImageView imageView) {
         //自带圆角方法，显示圆形
         options.circleCrop();
-        Glide.with(mContext)
-                .load(url)
-                .apply(options)
-                .into(imageView);
+        if (mContext != null) {
+            Glide.with(mContext)
+                    .load(url)
+                    .apply(options)
+                    .into(imageView);
+        }
     }
 }

@@ -12,6 +12,8 @@ import com.syl.snow.bean.TitleBean;
 import com.syl.snow.fragment.FrameAnimationFragment;
 import com.syl.snow.fragment.content1.ArcFragment;
 import com.syl.snow.fragment.content1.CalendarFragment;
+import com.syl.snow.fragment.content1.CalendarRecyclerViewF;
+import com.syl.snow.fragment.content1.CheckBoxRvF;
 import com.syl.snow.fragment.content1.Demo1Fragment;
 import com.syl.snow.fragment.content1.DialogDemoFragment;
 import com.syl.snow.fragment.content1.DisplayMetricFragment;
@@ -35,7 +37,6 @@ import com.syl.snow.fragment.content1.Rv3Fragment;
 import com.syl.snow.fragment.content1.ViewAnimationFragment;
 import com.syl.snow.fragment.content1.ViewFragment;
 import com.syl.snow.fragment.content1.VpTabFmFragment;
-import com.syl.snow.fragment.content1.CalendarRecyclerViewF;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -188,6 +189,10 @@ public class Content1Activity extends AppCompatActivity {
                 break;
             case 26:
                 transaction.replace(R.id.fl_content1, new CalendarRecyclerViewF());
+                transaction.commit();
+                break;
+            case 27:
+                transaction.replace(R.id.fl_content1, new CheckBoxRvF());
                 transaction.commit();
                 break;
             default:

@@ -7,6 +7,7 @@ package com.syl.snow.config;
  * @Called
  */
 public class Constant {
+    public static String MOBILE = "mobile";
     public static String PAGE_SIZE = "12";
     public static int delayTime = 1000;
 }

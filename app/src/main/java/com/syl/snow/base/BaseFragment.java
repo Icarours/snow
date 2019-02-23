@@ -3,16 +3,23 @@ package com.syl.snow.base;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.syl.snow.utils.LogUtils;
+import com.zhouyou.http.EasyHttp;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Bright on 2018/12/8.
@@ -22,6 +29,8 @@ import butterknife.ButterKnife;
  */
 public class BaseFragment extends Fragment {
     private static final String TAG = BaseFragment.class.getSimpleName();
+    public Handler mHandler = new Handler(Looper.getMainLooper());
+    public List<Disposable> mDisposableList = new ArrayList<>();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,74 +57,79 @@ public class BaseFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        LogUtils.i(TAG,"onViewCreated");
+        LogUtils.i(TAG, "onViewCreated");
         super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        LogUtils.d(TAG,"onActivityCreated");
+        LogUtils.d(TAG, "onActivityCreated");
         super.onActivityCreated(savedInstanceState);
     }
 
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        LogUtils.d(TAG,"onViewStateRestored");
+        LogUtils.d(TAG, "onViewStateRestored");
         super.onViewStateRestored(savedInstanceState);
     }
 
     @Override
     public void onDestroyView() {
-        LogUtils.d(TAG,"onDestroyView");
+        LogUtils.d(TAG, "onDestroyView");
         super.onDestroyView();
         ButterKnife.unbind(this);
+        for (int i = 0; i < mDisposableList.size(); i++) {
+            Disposable disposable = mDisposableList.get(i);
+            EasyHttp.cancelSubscription(disposable);//取消请求
+            mDisposableList.remove(disposable);
+        }
     }
 
     @Override
     public void onResume() {
-        LogUtils.d(TAG,"onResume");
+        LogUtils.d(TAG, "onResume");
         super.onResume();
     }
 
     @Override
     public void onStart() {
-        LogUtils.d(TAG,"onStart");
+        LogUtils.d(TAG, "onStart");
         super.onStart();
     }
 
     @Override
     public void onStop() {
-        LogUtils.d(TAG,"onStop");
+        LogUtils.d(TAG, "onStop");
         super.onStop();
     }
 
     @Override
     public void onPause() {
-        LogUtils.d(TAG,"onPause");
+        LogUtils.d(TAG, "onPause");
         super.onPause();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        LogUtils.d(TAG,"onActivityResult");
+        LogUtils.d(TAG, "onActivityResult");
         super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
     public void onAttach(Context context) {
-        LogUtils.d(TAG,"onAttach");
+        LogUtils.d(TAG, "onAttach");
         super.onAttach(context);
     }
 
     @Override
     public void onDetach() {
-        LogUtils.d(TAG,"onDetach");
+        LogUtils.d(TAG, "onDetach");
         super.onDetach();
     }
 
     @Override
     public void onAttachFragment(Fragment childFragment) {
-        LogUtils.d(TAG,"onAttachFragment");
+        LogUtils.d(TAG, "onAttachFragment");
         super.onAttachFragment(childFragment);
     }
 }
