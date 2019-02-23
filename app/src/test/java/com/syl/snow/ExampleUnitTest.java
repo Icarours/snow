@@ -19,8 +19,14 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
 //        assertEquals(4, 2 + 2);
-//        int gapCount = getBetweenDays(new Date(2019, 1, 0), new Date(2019, 2, 0));
-//        System.out.println(gapCount);
+        int gapCount = getBetweenDays(new Date(2019, 1, 1), new Date(2019, 2, 1));
+        System.out.println(gapCount);
+    }
+
+    /**
+     * post请求json转换为字符串
+     */
+    private void params() {
         Map<String, String> params = new HashMap<>();
         String url = "http://cloud.lanlyc.cn/new_gongdi/warnMessage/getWarnMessageList";
 //        Params params = new Params(pageNumber + "", Constant.PAGE_SIZE);

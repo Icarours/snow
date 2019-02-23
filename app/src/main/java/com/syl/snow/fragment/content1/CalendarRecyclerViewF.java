@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.syl.snow.R;
 import com.syl.snow.base.BaseFragment;
 import com.syl.snow.bean.DayE;
+import com.syl.snow.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,6 +31,7 @@ import butterknife.ButterKnife;
  * @Called
  */
 public class CalendarRecyclerViewF extends BaseFragment {
+    private static final String TAG = CalendarRecyclerViewF.class.getSimpleName();
     @Bind(R.id.rv)
     RecyclerView mRv;
     private List<DayE> mListData = new ArrayList<>();//数据集
@@ -38,6 +40,9 @@ public class CalendarRecyclerViewF extends BaseFragment {
     public void initData() {
         Bundle bundle = getArguments();
         Calendar calendar = null;
+        int year = 0;
+        int month = 0;
+        int date = 0;
         if (bundle != null) {
             int position = bundle.getInt("position", 1);
             calendar = (Calendar) bundle.getSerializable("calendar");
@@ -56,6 +61,8 @@ public class CalendarRecyclerViewF extends BaseFragment {
         if (calendar == null) {
             calendar = Calendar.getInstance();
         }
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
         //周日--周六
         mListData.add(new DayE("周日", "", 11));
         mListData.add(new DayE("周一", "", 11));
@@ -64,21 +71,41 @@ public class CalendarRecyclerViewF extends BaseFragment {
         mListData.add(new DayE("周四", "", 11));
         mListData.add(new DayE("周五", "", 11));
         mListData.add(new DayE("周六", "", 11));
-        calendar.add(Calendar.MONTH, -1);
-        int date = calendar.get(Calendar.DATE);
-        calendar.add(Calendar.DATE, -date);//当月1号
-        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-        //当月的上一月的后几天
-        for (int i = 0; i < dayOfWeek; i++) {
-            calendar.add(Calendar.DATE, -dayOfWeek + i);
-            mListData.add(new DayE(calendar.get(Calendar.DATE) + "", "", 12));
+        //当月的第一天
+        Date currentMonthFirst = new Date(year, month, 1);
+        LogUtils.d(TAG, "currentMonthFirst==" + year + "-" + month + "-" + 1);
+        //第二月的第一天
+        Date secondMonthFirst;
+        if (month < 12) {
+            secondMonthFirst = new Date(year, month + 1, 1);
+            LogUtils.d(TAG, "secondMonthFirst==" + year + "-" + (month + 1) + "-" + 1);
+        } else {
+            secondMonthFirst = new Date(year + 1, month, 1);
         }
+        calendar.setTime(currentMonthFirst);
+//        calendar.add(Calendar.DATE, 1);
+        date = calendar.get(Calendar.DATE);
+        LogUtils.d(TAG, year + "-" + month + "-" + date);
+        calendar.add(Calendar.DATE, -1);
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        LogUtils.d(TAG,"dayOfWeek--1=="+dayOfWeek);
+        date = calendar.get(Calendar.DATE);
+        //上个月的后几天
+        for (int i = 1; i < dayOfWeek; i++) {
+            mListData.add(mListData.size(), new DayE((date - dayOfWeek + i + 1) + "", "上月", 12));
+        }
+        int betweenDays = getBetweenDays(currentMonthFirst, secondMonthFirst);
         //当月
-        calendar.add(Calendar.MONTH, 1);
-        int days = getBetweenDays(new Date(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, 0),
-                new Date(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, 0));
-        for (int i = 1; i <= days; i++) {
+        for (int i = 1; i <= betweenDays; i++) {
             mListData.add(new DayE(i + "", "", 13));
+        }
+        //下个月,前几天
+        Date currentMonthLast = new Date(year, month, betweenDays);
+        calendar.setTime(currentMonthLast);
+        dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        LogUtils.d(TAG,"dayOfWeek--2=="+dayOfWeek);
+        for (int i = 0; i < 7 - dayOfWeek + 1; i++) {
+            mListData.add(new DayE((i + 1) + "", "", 12));
         }
     }
 
