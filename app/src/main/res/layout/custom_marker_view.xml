@@ -11,7 +11,7 @@
         android:paddingBottom="16px"
         android:paddingRight="5px"
         android:paddingLeft="5px"
-        android:text=""
+        android:text="111111"
         android:textSize="36px"
         android:textColor="@color/description"
         android:maxLines="1"

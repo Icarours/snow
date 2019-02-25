@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.syl.snow.R;
 import com.syl.snow.bean.TitleBean;
 import com.syl.snow.fragment.content1.Demo1Fragment;
+import com.syl.snow.fragment.content3.ArrayListFragment;
 import com.syl.snow.fragment.content3.CalendarView2Fragment;
 import com.syl.snow.fragment.content3.CalendarViewFragment;
 import com.syl.snow.fragment.content3.DataBindingFragment;
@@ -24,6 +25,12 @@ import androidx.fragment.app.FragmentTransaction;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * @author syl
+ * create at 2019/2/25
+ * description:
+ * 模块3的具体内容
+ */
 public class Content3Activity extends AppCompatActivity {
 
     @Bind(R.id.tv_title)
@@ -73,6 +80,10 @@ public class Content3Activity extends AppCompatActivity {
                 break;
             case 5:
                 transaction.replace(R.id.fl_content3, new CalendarView2Fragment());
+                transaction.commit();
+                break;
+            case 6:
+                transaction.replace(R.id.fl_content3, new ArrayListFragment());
                 transaction.commit();
                 break;
             default:
