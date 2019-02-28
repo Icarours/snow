@@ -25,6 +25,7 @@ import com.syl.snow.fragment.content1.JetPack1Fragment;
 import com.syl.snow.fragment.content1.LoadImgFragment;
 import com.syl.snow.fragment.content1.MPAndroidChartFragment;
 import com.syl.snow.fragment.content1.MaterialDesignFragment;
+import com.syl.snow.fragment.content1.MediaPlayerF;
 import com.syl.snow.fragment.content1.MobileFragment;
 import com.syl.snow.fragment.content1.PassValueFragment;
 import com.syl.snow.fragment.content1.PickViewFragment;
@@ -193,6 +194,10 @@ public class Content1Activity extends AppCompatActivity {
                 break;
             case 27:
                 transaction.replace(R.id.fl_content1, new CheckBoxRvF());
+                transaction.commit();
+                break;
+            case 28:
+                transaction.replace(R.id.fl_content1, new MediaPlayerF());
                 transaction.commit();
                 break;
             default:

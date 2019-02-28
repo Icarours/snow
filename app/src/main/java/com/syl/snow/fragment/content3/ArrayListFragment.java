@@ -80,6 +80,7 @@ public class ArrayListFragment extends BaseFragment {
 
     /**
      * 去除重复对象
+     * 向辅助集合b中添加对象,如果辅助集b合中已经有该对象,就不再添加
      *
      * @param a
      * @return

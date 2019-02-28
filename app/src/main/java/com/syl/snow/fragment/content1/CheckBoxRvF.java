@@ -309,13 +309,12 @@ public class CheckBoxRvF extends BaseFragment implements SwipeRefreshLayout.OnRe
                     helper.setText(R.id.tv_name, item.getPerson_name())
                             .setText(R.id.tv_phone, item.getMobile_phone());
                     RequestOptions options = new RequestOptions();
+                    options.error(R.drawable.mm2);
                     options.circleCrop();
-                    if (mContext != null) {
-                        Glide.with(mContext)
-                                .load(item.getPhoto_path())
-                                .apply(options)
-                                .into((ImageView) helper.getView(R.id.iv));
-                    }
+                    Glide.with(mContext)
+                            .load(item.getPhoto_path())
+                            .apply(options)
+                            .into((ImageView) helper.getView(R.id.iv));
                     break;
             }
             CheckBox checkBox = helper.getView(R.id.cb);
