@@ -68,6 +68,7 @@ public class Content1Fragment extends BaseFragment {
         mList.add(new TitleBean(26,"CalendarRecyclerView,失败", "CalendarRecyclerViewF,失败"));
         mList.add(new TitleBean(27,"RecyclerView和复选框", "RecyclerView和复选框,记录和回显"));
         mList.add(new TitleBean(28,"RecyclerView和MediaPlayer", "RecyclerView上拉加载更多,下拉刷新,使用MediaPlayer播放音乐文件"));
+        mList.add(new TitleBean(29,"VideoView", "使用VideoView播放视频文件"));
     }
 
     @Nullable

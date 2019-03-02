@@ -52,9 +52,14 @@
         <activity android:name=".activity.JsonDataActivity">
         </activity>
         <activity android:name=".activity.FragmentTestActivity"/>
-        <activity android:name=".activity.JZVideoActivity"
+        <activity
+            android:name=".activity.JZVideoActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".activity.VideoViewActivity"
                   android:configChanges="orientation|screenSize|keyboardHidden"
-                  android:screenOrientation="portrait">
+                  android:screenOrientation="landscape">
         </activity>
     </application>
 

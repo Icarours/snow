@@ -35,6 +35,7 @@ import com.syl.snow.fragment.content1.RoomFragment;
 import com.syl.snow.fragment.content1.Rv1Fragment;
 import com.syl.snow.fragment.content1.Rv2Fragment;
 import com.syl.snow.fragment.content1.Rv3Fragment;
+import com.syl.snow.fragment.content1.VideoViewF;
 import com.syl.snow.fragment.content1.ViewAnimationFragment;
 import com.syl.snow.fragment.content1.ViewFragment;
 import com.syl.snow.fragment.content1.VpTabFmFragment;
@@ -198,6 +199,10 @@ public class Content1Activity extends AppCompatActivity {
                 break;
             case 28:
                 transaction.replace(R.id.fl_content1, new MediaPlayerF());
+                transaction.commit();
+                break;
+            case 29:
+                transaction.replace(R.id.fl_content1, new VideoViewF());
                 transaction.commit();
                 break;
             default:

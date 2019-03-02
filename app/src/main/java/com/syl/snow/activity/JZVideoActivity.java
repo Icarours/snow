@@ -59,7 +59,6 @@ public class JZVideoActivity extends AppCompatActivity {
 //        8设置全屏播放
         JZVideoPlayer.FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;  //横向
         JZVideoPlayer.NORMAL_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT;  //纵向
-
     }
 
     @Override

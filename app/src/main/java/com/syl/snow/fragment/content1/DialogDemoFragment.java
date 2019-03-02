@@ -309,6 +309,7 @@ public class DialogDemoFragment extends BaseFragment {
                 dialog.setProgress(progress += 5);
                 if (progress >= 100) {
                     timer.cancel();
+                    dialog.dismiss();
                 }
             }
         }, 0, 1000);

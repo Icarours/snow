@@ -1,15 +1,16 @@
 package com.syl.snow.fragment.content1;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,17 +24,21 @@ import android.widget.Toast;
 import com.syl.snow.R;
 import com.syl.snow.base.BaseFragment;
 import com.syl.snow.utils.LogUtils;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static android.os.Environment.DIRECTORY_DCIM;
 
 /**
  * Created by Bright on 2019/2/19.
@@ -102,10 +107,19 @@ public class DrawBoardFragment extends BaseFragment implements SeekBar.OnSeekBar
                 mPaint.setColor(Color.BLUE);
                 break;
             case R.id.btn_save:
-                saveImg();
+                RxPermissions rxPermissions = new RxPermissions(this); // where this is an Activity or Fragment instance
+                rxPermissions
+                        .request(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE)
+                        .subscribe(granted -> {
+                            if (granted) { // Always true pre-M
+                                saveImg();
+                            } else {
+                                Toast.makeText(getContext(), "该操作需要写入sd卡的权限", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                 break;
             case R.id.btn_clear:
-                mCanvas.drawColor(Color.WHITE, PorterDuff.Mode.CLEAR);//清空画布
+                mCanvas.drawARGB(255, 255, 255, 255);//先绘制一层白色,否则,保存得到图片的背景是黑色的
                 break;
             default:
                 break;
@@ -116,7 +130,8 @@ public class DrawBoardFragment extends BaseFragment implements SeekBar.OnSeekBar
      * 保存图片
      */
     private void saveImg() {
-        File file = new File("/mnt/sdcard/" + System.currentTimeMillis() + ".jpg");
+        File file = new File(Environment.getExternalStoragePublicDirectory(DIRECTORY_DCIM).getPath() + System.currentTimeMillis() + ".jpg");
+//        File file = new File("/mnt/sdcard/" + System.currentTimeMillis() + ".jpg");
         try {
             OutputStream outputStream = new FileOutputStream(file);
             mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
@@ -126,7 +141,7 @@ public class DrawBoardFragment extends BaseFragment implements SeekBar.OnSeekBar
             intent.setAction(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
             Uri uri = Uri.fromFile(file);
             intent.setData(uri);
-            getActivity().sendBroadcast(intent);
+            Objects.requireNonNull(getActivity()).sendBroadcast(intent);
             Toast.makeText(getContext(), "图片保存成功..", Toast.LENGTH_SHORT).show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
