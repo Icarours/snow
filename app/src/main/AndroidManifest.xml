@@ -57,10 +57,14 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.VideoViewActivity"
-                  android:configChanges="orientation|screenSize|keyboardHidden"
-                  android:screenOrientation="landscape">
+        <activity
+            android:name=".activity.VideoViewActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="landscape">
         </activity>
+        <activity android:name=".activity.PhotoViewActivity">
+        </activity>
+        <activity android:name=".base.BaseActivity"/>
     </application>
 
 </manifest>

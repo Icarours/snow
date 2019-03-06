@@ -70,6 +70,7 @@ public class Content1Fragment extends BaseFragment {
         mList.add(new TitleBean(28,"RecyclerView和MediaPlayer", "RecyclerView上拉加载更多,下拉刷新,使用MediaPlayer播放音乐文件"));
         mList.add(new TitleBean(29,"VideoView", "使用VideoView播放视频文件"));
         mList.add(new TitleBean(30,"常用的文件目录", "Android中的常用的文件目录"));
+        mList.add(new TitleBean(31,"图片查看器", "Android图片查看器"));
     }
 
     @Nullable

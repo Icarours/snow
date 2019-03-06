@@ -71,4 +71,8 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     //饺子播放器
     implementation 'cn.jzvd:jiaozivideoplayer:6.2.4'
+    //手指滑动放大缩小图片
+    implementation 'com.github.chrisbanes:PhotoView:1.2.6'
+    //一个界面滑动退出效果（比如自己滑动空白区域，就退出界面，而不用按手机返回键)
+    implementation 'com.komi.slider:slider:0.4.0'
 }

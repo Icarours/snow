@@ -29,6 +29,7 @@ import com.syl.snow.fragment.content1.MaterialDesignFragment;
 import com.syl.snow.fragment.content1.MediaPlayerF;
 import com.syl.snow.fragment.content1.MobileFragment;
 import com.syl.snow.fragment.content1.PassValueFragment;
+import com.syl.snow.fragment.content1.PhotoViewFragment;
 import com.syl.snow.fragment.content1.PickViewFragment;
 import com.syl.snow.fragment.content1.PopFragment;
 import com.syl.snow.fragment.content1.PropertyAnimationFragment;
@@ -208,6 +209,10 @@ public class Content1Activity extends AppCompatActivity {
                 break;
             case 30:
                 transaction.replace(R.id.fl_content1, new FileFragment());
+                transaction.commit();
+                break;
+            case 31:
+                transaction.replace(R.id.fl_content1, new PhotoViewFragment());
                 transaction.commit();
                 break;
             default:
