@@ -1,6 +1,8 @@
 package com.syl.snow.fragment.content3;
 
+import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,11 +45,14 @@ public class DatePickerDialog2Fragment extends BaseFragment {
         return rootView;
     }
 
-    @OnClick({R.id.btn_date_picker1})
+    @OnClick({R.id.btn_date_picker1, R.id.btn_date_picker2})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.btn_date_picker1:
                 pickDate1();
+                break;
+            case R.id.btn_date_picker2:
+                showDateDialog();
                 break;
         }
     }
@@ -98,5 +103,27 @@ public class DatePickerDialog2Fragment extends BaseFragment {
         };
         dlg.setTitle("请选择考勤月份");
         dlg.show();
+    }
+
+    /**
+     * 年月日
+     */
+    @TargetApi(Build.VERSION_CODES.N)
+    private void showDateDialog() {
+        // 获取一个日历对象，并初始化为当前选中的时间
+        Calendar calendar = Calendar.getInstance();
+        int calenderYear = calendar.get(Calendar.YEAR);
+        int calenderMonth = calendar.get(Calendar.MONTH);//月份要+1
+        int calenderDay = calendar.get(Calendar.DATE);
+        DatePickerDialog datePicker = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                int month = monthOfYear + 1;
+                String date = year + "-" + (month < 10 ? "0" + month : month) + "-" + (dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth);
+                mTvDate.setText(date);
+            }
+        }, calenderYear, calenderMonth, calenderDay);
+        datePicker.show();
     }
 }

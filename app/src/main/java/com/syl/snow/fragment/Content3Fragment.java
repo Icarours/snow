@@ -41,7 +41,7 @@ public class Content3Fragment extends BaseFragment {
         mList.add(new TitleBean(0, "格式化字符串", "String.format()用法"));
         mList.add(new TitleBean(1, "Android截图", "Android截图并保存图片到本地"));
         mList.add(new TitleBean(2, "jetpack data binding", "data binding"));
-        mList.add(new TitleBean(3, "日期选择器(只有年月,没有日)", "DatePickerDialog"));
+        mList.add(new TitleBean(3, "日期选择器", "DatePickerDialog"));
         mList.add(new TitleBean(4, "CalendarView", "日历控件 "));
         mList.add(new TitleBean(5, "自定义日历控件,失败", "使用RecyclerView自定义日历控件"));
         mList.add(new TitleBean(6, "去除ArrayList中的重复对象", "去除ArrayList中的重复对象"));

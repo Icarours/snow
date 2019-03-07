@@ -11,5 +11,9 @@
     <Button
         android:id="@+id/btn_date_picker1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:text="日期选择器(至于年月,没有日)"/>
+        android:layout_height="wrap_content" android:text="日期选择器(只有年月,没有日)"/>
+    <Button
+        android:id="@+id/btn_date_picker2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="日期选择器(年月日)"/>
 </LinearLayout>
