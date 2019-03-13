@@ -4,9 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
     android:layout_height="match_parent"
-    tools:context=".activity.PhotoViewActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".activity.PhotoViewActivity2">
     <include android:id="@+id/include_tool_bar"
              layout="@layout/simple_tool_bar"
              app:layout_constraintEnd_toEndOf="parent"

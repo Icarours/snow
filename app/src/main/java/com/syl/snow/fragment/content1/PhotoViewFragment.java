@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.syl.snow.R;
 import com.syl.snow.activity.PhotoViewActivity;
 import com.syl.snow.base.BaseFragment;
+import com.syl.snow.bean.TitleBean;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,6 +43,7 @@ public class PhotoViewFragment extends BaseFragment {
     @OnClick({R.id.iv1, R.id.iv2, R.id.iv3})
     public void onClickView(View view) {
         Intent intent = new Intent(getContext(),PhotoViewActivity.class);
+        intent.putExtra("title",new TitleBean(0,"查看图片", "简易图片查看器"));
         switch (view.getId()) {
             case R.id.iv1:
                 intent.putExtra("showphoto",0);

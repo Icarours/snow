@@ -5,17 +5,22 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.komi.slider.SliderConfig;
 import com.komi.slider.SliderUtils;
 import com.komi.slider.position.SliderPosition;
 import com.syl.snow.R;
 import com.syl.snow.base.BaseActivity;
+import com.syl.snow.bean.TitleBean;
+import com.syl.snow.utils.LogUtils;
 
 import java.util.ArrayList;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.Bind;
@@ -23,8 +28,18 @@ import butterknife.ButterKnife;
 import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
+/**
+ * @author syl
+ * create at 2019/3/13
+ * description:
+ * 简单的图片查看器
+ */
 public class PhotoViewActivity extends BaseActivity {
-
+    private static final String TAG = PhotoViewActivity.class.getSimpleName();
+    @Bind(R.id.tv_title)
+    TextView mTvTitle;
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
     @Bind(R.id.ViewPager)
     ViewPager mViewPager;
     @Bind(R.id.text)
@@ -37,14 +52,20 @@ public class PhotoViewActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_photo_view);
         ButterKnife.bind(this);
-        initSilder();
+        initToolBar();
+        Intent intent = getIntent();
+        TitleBean titleBean = (TitleBean) intent.getSerializableExtra("title");
+        mToolbar.setTitle(titleBean.getTitle());
+        mToolbar.setSubtitle(titleBean.getDescription());
+        initSlider();
         initView();
-        initShowphoto();
+        initShowPhoto();
     }
 
-    private void initShowphoto() {
+    private void initShowPhoto() {
         //Bundle bundle = getIntent().getExtras();
         Intent intent = getIntent();
         int i = intent.getIntExtra("showphoto", 0);
@@ -52,7 +73,7 @@ public class PhotoViewActivity extends BaseActivity {
     }
 
     //实现界面上下滑动退出界面效果
-    private void initSilder() {
+    private void initSlider() {
         mConfig = new SliderConfig.Builder()
                 .secondaryColor(Color.TRANSPARENT)
                 .position(SliderPosition.VERTICAL)  //设置上下滑动
@@ -64,12 +85,10 @@ public class PhotoViewActivity extends BaseActivity {
     private void initView() {
         mList = new ArrayList<ImageView>();
         pagerAdapter = new PagerAdapter() {
-
             // 获取要滑动的控件的数量，在这里我们以滑动的广告栏为例，那么这里就应该是展示的广告图片的ImageView数量
             @Override
             public int getCount() {
                 return Integer.MAX_VALUE;
-
                 //return Integer.MAX_VALUE;    返回一个比较大的值，目的是为了实现无限轮播
             }
 
@@ -118,23 +137,22 @@ public class PhotoViewActivity extends BaseActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                LogUtils.d(TAG, "onPageScrolled()----position==" + position + "--positionOffset==" + positionOffset + "--positionOffsetPixels==" + positionOffsetPixels);
             }
 
             //滑动到第几张图片的调用的方法，position当前显示图片位置
             @Override
             public void onPageSelected(int position) {
+                LogUtils.d(TAG, "onPageSelected()--position==" + position);
+                mText.setText((position % imageIds.length + 1) + "/" + imageIds.length);
                 switch (position) {
                     case 0:
                         setSelect(0);
-                        mText.setText("1/3");
                         break;
                     case 1:
                         setSelect(1);
-                        mText.setText("2/3");
                         break;
                     case 2:
-                        mText.setText("3/3");
                         setSelect(2);
                         break;
                 }
@@ -160,5 +178,24 @@ public class PhotoViewActivity extends BaseActivity {
                 mViewPager.setCurrentItem(2);
                 break;
         }
+    }
+
+    private void initToolBar() {
+        mToolbar.inflateMenu(R.menu.menu1);
+        mToolbar.setOnMenuItemClickListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.item1:
+                    Toast.makeText(PhotoViewActivity.this, "item1 was clicked", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.item2:
+                    Toast.makeText(PhotoViewActivity.this, "item2 was clicked", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.item3:
+                    Toast.makeText(PhotoViewActivity.this, "item3 was clicked", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+            return false;
+        });
+        mToolbar.setNavigationOnClickListener(v -> finish());
     }
 }

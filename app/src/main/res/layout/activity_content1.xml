@@ -6,33 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.Content1Activity">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
-        app:subtitle="SubTitle"
-        app:logo="@drawable/ic_android_black_24dp"
-        app:subtitleTextColor="#ffffff"
-        app:title="Title"
-        app:titleTextColor="#ffffff">
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="text"
-            android:textColor="#ff0000"
-            android:visibility="gone"/>
-    </androidx.appcompat.widget.Toolbar>
+    <include android:id="@+id/include_tool_bar"
+             layout="@layout/simple_tool_bar"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent"/>
     <FrameLayout android:id="@+id/fl_content1"
                  android:layout_width="match_parent"
                  android:layout_height="0dp"
                  app:layout_constraintBottom_toBottomOf="parent"
                  app:layout_constraintEnd_toEndOf="parent"
                  app:layout_constraintStart_toStartOf="parent"
-                 app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
+                 app:layout_constraintTop_toBottomOf="@id/include_tool_bar"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

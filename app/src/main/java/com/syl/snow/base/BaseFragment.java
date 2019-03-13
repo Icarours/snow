@@ -1,5 +1,6 @@
 package com.syl.snow.base;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ public class BaseFragment extends Fragment {
     private static final String TAG = BaseFragment.class.getSimpleName();
     public Handler mHandler = new Handler(Looper.getMainLooper());
     public List<Disposable> mDisposableList = new ArrayList<>();
+    private ProgressDialog mDialog;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -131,5 +133,23 @@ public class BaseFragment extends Fragment {
     public void onAttachFragment(Fragment childFragment) {
         LogUtils.d(TAG, "onAttachFragment");
         super.onAttachFragment(childFragment);
+    }
+
+    /**
+     * 圆形进度条对话框,网络请求,显示对话框
+     */
+    public void showDialog() {
+        mDialog = new ProgressDialog(getContext());
+        mDialog.setMessage("正在加载中");
+        mDialog.show();
+    }
+
+    /**
+     * 圆形进度条对话框,网络请求,隐藏对话框
+     */
+    public void hideDialog() {
+        if (mDialog != null || mDialog.isShowing()) {
+            mDialog.dismiss();
+        }
     }
 }

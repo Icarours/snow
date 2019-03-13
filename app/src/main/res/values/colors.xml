@@ -40,4 +40,7 @@
     <color name="line2">#9F8FBA</color>
     <color name="line2fill">#EBE4F8</color>
     <!--chart end-->
+
+    <color name="bg_color_F7F7F7">#F7F7F7</color>
+    <color name="bg_color_40BBFD">#40BBFD</color>
 </resources>

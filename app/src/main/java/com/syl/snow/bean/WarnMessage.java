@@ -1,5 +1,8 @@
 package com.syl.snow.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
 /**
@@ -8,7 +11,7 @@ import java.io.Serializable;
  * @Describe
  * @Called
  */
-public class WarnMessage implements Serializable{
+public class WarnMessage implements Serializable,Parcelable {
 
     /**
      * id : 72703693b88343baadaf72fe862835ad
@@ -41,6 +44,35 @@ public class WarnMessage implements Serializable{
     private String processed_video;
     private String create_time;
     private String person_id;
+
+    protected WarnMessage(Parcel in) {
+        id = in.readString();
+        warn_type = in.readString();
+        camera_id = in.readString();
+        camera_name = in.readString();
+        warn_picture = in.readString();
+        warn_video = in.readString();
+        is_processed = in.readString();
+        processed_person_id = in.readString();
+        processed_time = in.readString();
+        processed_content = in.readString();
+        processed_image = in.readString();
+        processed_video = in.readString();
+        create_time = in.readString();
+        person_id = in.readString();
+    }
+
+    public static final Creator<WarnMessage> CREATOR = new Creator<WarnMessage>() {
+        @Override
+        public WarnMessage createFromParcel(Parcel in) {
+            return new WarnMessage(in);
+        }
+
+        @Override
+        public WarnMessage[] newArray(int size) {
+            return new WarnMessage[size];
+        }
+    };
 
     @Override
     public String toString() {
@@ -175,5 +207,28 @@ public class WarnMessage implements Serializable{
 
     public void setPerson_id(String person_id) {
         this.person_id = person_id;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(warn_type);
+        dest.writeString(camera_id);
+        dest.writeString(camera_name);
+        dest.writeString(warn_picture);
+        dest.writeString(warn_video);
+        dest.writeString(is_processed);
+        dest.writeString(processed_person_id);
+        dest.writeString(processed_time);
+        dest.writeString(processed_content);
+        dest.writeString(processed_image);
+        dest.writeString(processed_video);
+        dest.writeString(create_time);
+        dest.writeString(person_id);
     }
 }

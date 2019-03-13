@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!--
+    如果布局中会弹出软键盘,应该将Toolbar中的
+    android:fitsSystemWindows="true"
+    移到Toolbar的根布局
+    -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/color_white_ffffff"
+        app:subtitleTextColor="@color/color_white_ffffff"
+        app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
+    >
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="toolbar title"
+            android:textColor="#ffffff"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/tv_right1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="8dp"
+            android:text="右一"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/tv_right2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="8dp"
+            android:text="右二"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:visibility="gone"/>
+        <ImageView android:id="@+id/iv_right1"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="right"
+                   android:layout_marginRight="8dp"
+                   android:src="@drawable/ic_send_black_24dp"
+                   android:visibility="gone"/>
+    </androidx.appcompat.widget.Toolbar>
+</androidx.constraintlayout.widget.ConstraintLayout>

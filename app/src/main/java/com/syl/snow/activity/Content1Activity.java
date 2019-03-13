@@ -30,6 +30,7 @@ import com.syl.snow.fragment.content1.MediaPlayerF;
 import com.syl.snow.fragment.content1.MobileFragment;
 import com.syl.snow.fragment.content1.PassValueFragment;
 import com.syl.snow.fragment.content1.PhotoViewFragment;
+import com.syl.snow.fragment.content1.PhotoViewFragment2;
 import com.syl.snow.fragment.content1.PickViewFragment;
 import com.syl.snow.fragment.content1.PopFragment;
 import com.syl.snow.fragment.content1.PropertyAnimationFragment;
@@ -57,10 +58,10 @@ import butterknife.ButterKnife;
  */
 public class Content1Activity extends AppCompatActivity {
     private static final String TAG = Content1Activity.class.getSimpleName();
-    @Bind(R.id.toolbar)
-    Toolbar mToolbar;
     @Bind(R.id.tv_title)
     TextView mTvTitle;
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
     @Bind(R.id.fl_content1)
     FrameLayout mFlContent1;
 
@@ -213,6 +214,10 @@ public class Content1Activity extends AppCompatActivity {
                 break;
             case 31:
                 transaction.replace(R.id.fl_content1, new PhotoViewFragment());
+                transaction.commit();
+                break;
+            case 32:
+                transaction.replace(R.id.fl_content1, new PhotoViewFragment2());
                 transaction.commit();
                 break;
             default:
