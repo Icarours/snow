@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @Describe
  * @Called
  */
-public class WarnMessage implements Serializable,Parcelable {
+public class WarnMessageE implements Serializable,Parcelable {
 
     /**
      * id : 72703693b88343baadaf72fe862835ad
@@ -45,7 +45,7 @@ public class WarnMessage implements Serializable,Parcelable {
     private String create_time;
     private String person_id;
 
-    protected WarnMessage(Parcel in) {
+    protected WarnMessageE(Parcel in) {
         id = in.readString();
         warn_type = in.readString();
         camera_id = in.readString();
@@ -62,21 +62,21 @@ public class WarnMessage implements Serializable,Parcelable {
         person_id = in.readString();
     }
 
-    public static final Creator<WarnMessage> CREATOR = new Creator<WarnMessage>() {
+    public static final Creator<WarnMessageE> CREATOR = new Creator<WarnMessageE>() {
         @Override
-        public WarnMessage createFromParcel(Parcel in) {
-            return new WarnMessage(in);
+        public WarnMessageE createFromParcel(Parcel in) {
+            return new WarnMessageE(in);
         }
 
         @Override
-        public WarnMessage[] newArray(int size) {
-            return new WarnMessage[size];
+        public WarnMessageE[] newArray(int size) {
+            return new WarnMessageE[size];
         }
     };
 
     @Override
     public String toString() {
-        return "WarnMessage{" +
+        return "WarnMessageE{" +
                 "id='" + id + '\'' +
                 ", warn_type='" + warn_type + '\'' +
                 ", camera_id='" + camera_id + '\'' +
@@ -94,7 +94,7 @@ public class WarnMessage implements Serializable,Parcelable {
                 '}';
     }
 
-    public WarnMessage() {
+    public WarnMessageE() {
     }
 
     public String getId() {

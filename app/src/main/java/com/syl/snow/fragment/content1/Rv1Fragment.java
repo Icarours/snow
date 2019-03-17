@@ -15,7 +15,7 @@ import com.syl.snow.base.BaseFragment;
 import com.syl.snow.bean.Api;
 import com.syl.snow.bean.BaseApi;
 import com.syl.snow.bean.Params;
-import com.syl.snow.bean.WarnMessage;
+import com.syl.snow.bean.WarnMessageE;
 import com.syl.snow.config.Constant;
 import com.syl.snow.utils.LogUtils;
 import com.zhouyou.http.EasyHttp;
@@ -45,7 +45,7 @@ public class Rv1Fragment extends BaseFragment {
     private int pageNumber = 1;
     @Bind(R.id.rv)
     RecyclerView mRv;
-    private List<WarnMessage> mList = new ArrayList<>();//数据集
+    private List<WarnMessageE> mList = new ArrayList<>();//数据集
     private RvAdapter mAdapter;
 
     @Nullable
@@ -86,7 +86,7 @@ public class Rv1Fragment extends BaseFragment {
                         if (baseApi.isOk()) {
                             String apiData = baseApi.getData();
                             if (apiData != null && !"".equals(apiData)) {
-                                List<WarnMessage> list = JSONObject.parseArray(apiData, WarnMessage.class);
+                                List<WarnMessageE> list = JSONObject.parseArray(apiData, WarnMessageE.class);
                                 if (list.size() > 0) {
                                     mList.addAll(list);
                                     initAdapter();
@@ -132,13 +132,13 @@ public class Rv1Fragment extends BaseFragment {
         }
     }
 
-    class RvAdapter extends BaseQuickAdapter<WarnMessage, BaseViewHolder> {
-        public RvAdapter(int layoutResId, @Nullable List<WarnMessage> data) {
+    class RvAdapter extends BaseQuickAdapter<WarnMessageE, BaseViewHolder> {
+        public RvAdapter(int layoutResId, @Nullable List<WarnMessageE> data) {
             super(layoutResId, data);
         }
 
         @Override
-        protected void convert(BaseViewHolder helper, WarnMessage item) {
+        protected void convert(BaseViewHolder helper, WarnMessageE item) {
             helper.setText(R.id.tv_type, item.getWarn_type())
                     .setText(R.id.tv_time, item.getCreate_time());
             Glide.with(getActivity())

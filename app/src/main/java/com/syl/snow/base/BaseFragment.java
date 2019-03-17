@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -148,6 +149,7 @@ public class BaseFragment extends Fragment {
      * 圆形进度条对话框,网络请求,隐藏对话框
      */
     public void hideDialog() {
+        SystemClock.sleep(800);
         if (mDialog != null || mDialog.isShowing()) {
             mDialog.dismiss();
         }

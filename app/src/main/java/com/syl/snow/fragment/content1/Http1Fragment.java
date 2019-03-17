@@ -11,7 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.syl.snow.R;
 import com.syl.snow.base.BaseFragment;
 import com.syl.snow.bean.BaseApi;
-import com.syl.snow.bean.WarnMessage;
+import com.syl.snow.bean.WarnMessageE;
 import com.syl.snow.utils.LogUtils;
 import com.syl.snow.utils.StringUtils;
 
@@ -117,7 +117,7 @@ public class Http1Fragment extends BaseFragment {
                 if (baseApi.isOk()) {
                     String data = baseApi.getData();
                     if (data != null && !"".equals(data)) {
-                        List<WarnMessage> warnMessages = JSONObject.parseArray(data, WarnMessage.class);
+                        List<WarnMessageE> warnMessages = JSONObject.parseArray(data, WarnMessageE.class);
                         LogUtils.d(TAG, "size==" + warnMessages.size());
                         for (int i = 0; i < warnMessages.size(); i++) {
                             LogUtils.d(TAG, warnMessages.get(i).toString() + "-------" + i);

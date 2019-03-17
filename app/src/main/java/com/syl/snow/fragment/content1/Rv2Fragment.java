@@ -19,7 +19,7 @@ import com.syl.snow.base.BaseFragment;
 import com.syl.snow.bean.Api;
 import com.syl.snow.bean.BaseApi;
 import com.syl.snow.bean.Params;
-import com.syl.snow.bean.WarnMessage;
+import com.syl.snow.bean.WarnMessageE;
 import com.syl.snow.config.Constant;
 import com.syl.snow.utils.LogUtils;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenu;
@@ -56,7 +56,7 @@ public class Rv2Fragment extends BaseFragment {
 
     private Handler mHandler = new Handler(Looper.getMainLooper());
     private int pageNumber = 1;
-    private List<WarnMessage> mList = new ArrayList<>();//数据集
+    private List<WarnMessageE> mList = new ArrayList<>();//数据集
     private Rv2Adapter mAdapter;
     /**
      * 菜单创建器，在Item要创建菜单的时候调用。
@@ -174,7 +174,7 @@ public class Rv2Fragment extends BaseFragment {
                         if (baseApi.isOk()) {
                             String apiData = baseApi.getData();
                             if (apiData != null && !"".equals(apiData)) {
-                                List<WarnMessage> list = JSONObject.parseArray(apiData, WarnMessage.class);
+                                List<WarnMessageE> list = JSONObject.parseArray(apiData, WarnMessageE.class);
                                 if (list.size() > 0) {
                                     mList.addAll(list);
                                     pageNumber++;
@@ -219,13 +219,13 @@ public class Rv2Fragment extends BaseFragment {
         }
     }
 
-    class Rv2Adapter extends BaseQuickAdapter<WarnMessage, BaseViewHolder> {
-        public Rv2Adapter(int layoutResId, @Nullable List<WarnMessage> data) {
+    class Rv2Adapter extends BaseQuickAdapter<WarnMessageE, BaseViewHolder> {
+        public Rv2Adapter(int layoutResId, @Nullable List<WarnMessageE> data) {
             super(layoutResId, data);
         }
 
         @Override
-        protected void convert(BaseViewHolder helper, WarnMessage item) {
+        protected void convert(BaseViewHolder helper, WarnMessageE item) {
             helper.setText(R.id.tv_type, item.getWarn_type())
                     .setText(R.id.tv_camera_id, item.getCamera_id())
                     .setText(R.id.tv_camera_name, item.getCamera_name())

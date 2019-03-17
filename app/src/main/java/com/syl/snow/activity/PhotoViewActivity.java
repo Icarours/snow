@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.komi.slider.SliderConfig;
 import com.komi.slider.SliderUtils;
@@ -55,7 +54,7 @@ public class PhotoViewActivity extends BaseActivity {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_photo_view);
         ButterKnife.bind(this);
-        initToolBar();
+        initToolBar(mToolbar);
         Intent intent = getIntent();
         TitleBean titleBean = (TitleBean) intent.getSerializableExtra("title");
         mToolbar.setTitle(titleBean.getTitle());
@@ -178,24 +177,5 @@ public class PhotoViewActivity extends BaseActivity {
                 mViewPager.setCurrentItem(2);
                 break;
         }
-    }
-
-    private void initToolBar() {
-        mToolbar.inflateMenu(R.menu.menu1);
-        mToolbar.setOnMenuItemClickListener(menuItem -> {
-            switch (menuItem.getItemId()) {
-                case R.id.item1:
-                    Toast.makeText(PhotoViewActivity.this, "item1 was clicked", Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.item2:
-                    Toast.makeText(PhotoViewActivity.this, "item2 was clicked", Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.item3:
-                    Toast.makeText(PhotoViewActivity.this, "item3 was clicked", Toast.LENGTH_SHORT).show();
-                    break;
-            }
-            return false;
-        });
-        mToolbar.setNavigationOnClickListener(v -> finish());
     }
 }

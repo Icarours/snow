@@ -19,7 +19,8 @@ import com.syl.snow.base.BaseFragment;
 import com.syl.snow.bean.Api;
 import com.syl.snow.bean.BaseApi;
 import com.syl.snow.bean.Params;
-import com.syl.snow.bean.WarnMessage;
+import com.syl.snow.bean.TitleBean;
+import com.syl.snow.bean.WarnMessageE;
 import com.syl.snow.config.Constant;
 import com.syl.snow.utils.LogUtils;
 import com.zhouyou.http.EasyHttp;
@@ -56,7 +57,7 @@ public class PhotoViewFragment2 extends BaseFragment implements SwipeRefreshLayo
     @Bind(R.id.tv_retry)
     TextView mTvRetry;
     private int pageNumber = 1;
-    private List<WarnMessage> mList = new ArrayList<>();//数据集
+    private List<WarnMessageE> mList = new ArrayList<>();//数据集
     private RvAdapter mAdapter;
     private boolean isRefresh = false;//是否是刷新
 
@@ -109,7 +110,7 @@ public class PhotoViewFragment2 extends BaseFragment implements SwipeRefreshLayo
                         if (baseApi.isOk()) {
                             String apiData = baseApi.getData();
                             if (apiData != null && !"".equals(apiData)) {
-                                List<WarnMessage> list = JSONObject.parseArray(apiData, WarnMessage.class);
+                                List<WarnMessageE> list = JSONObject.parseArray(apiData, WarnMessageE.class);
                                 if (list.size() > 0) {
                                     mList.addAll(list);
                                     initAdapter();
@@ -172,6 +173,7 @@ public class PhotoViewFragment2 extends BaseFragment implements SwipeRefreshLayo
             mList.clear();
             mAdapter.notifyDataSetChanged();
         }
+        pageNumber = 1;
     }
 
     private void initAdapter() {
@@ -187,18 +189,20 @@ public class PhotoViewFragment2 extends BaseFragment implements SwipeRefreshLayo
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Intent intent = new Intent(getContext(), PhotoViewActivity2.class);
                 intent.putParcelableArrayListExtra("photo_list", (ArrayList<? extends Parcelable>) mList);
+                intent.putExtra("title",new TitleBean(0,"图片查看器2","图片查看器2"));
+                intent.putExtra("position",position);
                 startActivity(intent);
             }
         });
     }
 
-    class RvAdapter extends BaseQuickAdapter<WarnMessage, BaseViewHolder> {
-        public RvAdapter(int layoutResId, @Nullable List<WarnMessage> data) {
+    class RvAdapter extends BaseQuickAdapter<WarnMessageE, BaseViewHolder> {
+        public RvAdapter(int layoutResId, @Nullable List<WarnMessageE> data) {
             super(layoutResId, data);
         }
 
         @Override
-        protected void convert(BaseViewHolder helper, WarnMessage item) {
+        protected void convert(BaseViewHolder helper, WarnMessageE item) {
             helper.setText(R.id.tv_type, item.getWarn_type())
                     .setText(R.id.tv_time, item.getCreate_time());
             Glide.with(getActivity())
@@ -206,5 +210,4 @@ public class PhotoViewFragment2 extends BaseFragment implements SwipeRefreshLayo
                     .into((ImageView) helper.getView(R.id.iv_img));
         }
     }
-
 }
