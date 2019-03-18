@@ -72,6 +72,7 @@ public class Content1Fragment extends BaseFragment {
         mList.add(new TitleBean(30,"常用的文件目录", "Android中的常用的文件目录"));
         mList.add(new TitleBean(31,"图片查看器", "Android图片查看器"));
         mList.add(new TitleBean(32,"图片查看器2", "Android图片查看器2"));
+        mList.add(new TitleBean(33,"圆形图片,外侧白边", "圆形图片,外侧白边"));
     }
 
     @Nullable

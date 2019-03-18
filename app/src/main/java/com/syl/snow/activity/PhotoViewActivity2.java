@@ -84,6 +84,7 @@ public class PhotoViewActivity2 extends BaseActivity {
                         .load(ivPath)
                         .apply(options)
                         .into(photoView);
+//                new GlideUtil(this).showImage(ivPath,photoView);
                 photoView.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
                     @Override
                     public void onPhotoTap(View view, float x, float y) {

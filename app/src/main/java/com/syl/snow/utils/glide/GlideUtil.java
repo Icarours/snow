@@ -24,11 +24,10 @@ import androidx.annotation.Nullable;
  * @Called
  */
 public class GlideUtil {
-    private static GlideUtil instance;
-    RequestOptions options;
-    Context mContext;
+    private RequestOptions options;
+    private Context mContext;
 
-    private GlideUtil(Context context) {
+    public GlideUtil(Context context) {
         options = new RequestOptions();
         options.skipMemoryCache(false);
         options.diskCacheStrategy(DiskCacheStrategy.ALL);
@@ -41,16 +40,6 @@ public class GlideUtil {
         mContext = context;
     }
 
-    public static GlideUtil getInstance(Context context) {
-        if (instance == null) {
-            synchronized (GlideUtil.class) {
-                if (instance == null) {
-                    instance = new GlideUtil(context);
-                }
-            }
-        }
-        return instance;
-    }
 
     //设置占位符
     public void setPlaceholder(int id) {
@@ -138,6 +127,14 @@ public class GlideUtil {
                 .apply(options)
                 .into(imageView);
 
+    }
+
+    public void showImageRound(int resId, ImageView imageView) {
+        options.circleCrop();
+        Glide.with(mContext)
+                .load(resId)
+                .apply(options)
+                .into(imageView);
     }
 
     public void showImageRound(String url, final ImageView imageView, int radius, int height, int width) {

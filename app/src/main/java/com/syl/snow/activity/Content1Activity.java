@@ -2,6 +2,7 @@ package com.syl.snow.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import com.syl.snow.fragment.content1.FileFragment;
 import com.syl.snow.fragment.content1.GlideFragment;
 import com.syl.snow.fragment.content1.Http1Fragment;
 import com.syl.snow.fragment.content1.ImageFragment;
+import com.syl.snow.fragment.content1.IvCircleFragment;
 import com.syl.snow.fragment.content1.JetPack1Fragment;
 import com.syl.snow.fragment.content1.LoadImgFragment;
 import com.syl.snow.fragment.content1.MPAndroidChartFragment;
@@ -220,6 +222,10 @@ public class Content1Activity extends AppCompatActivity {
                 transaction.replace(R.id.fl_content1, new PhotoViewFragment2());
                 transaction.commit();
                 break;
+            case 33:
+                transaction.replace(R.id.fl_content1, new IvCircleFragment());
+                transaction.commit();
+                break;
             default:
                 Demo1Fragment fragment = new Demo1Fragment();
                 transaction.replace(R.id.fl_content1, fragment);
@@ -248,5 +254,15 @@ public class Content1Activity extends AppCompatActivity {
             return false;
         });
         mToolbar.setNavigationOnClickListener(v -> finish());
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onRestoreInstanceState(savedInstanceState, persistentState);
     }
 }
