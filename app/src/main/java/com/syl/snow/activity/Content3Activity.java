@@ -15,6 +15,7 @@ import com.syl.snow.fragment.content3.CalendarView2Fragment;
 import com.syl.snow.fragment.content3.CalendarViewFragment;
 import com.syl.snow.fragment.content3.DataBindingFragment;
 import com.syl.snow.fragment.content3.DatePickerDialog2Fragment;
+import com.syl.snow.fragment.content3.FloatingActionButtonFragment;
 import com.syl.snow.fragment.content3.MediaPlayerFragment;
 import com.syl.snow.fragment.content3.SavePicFragment;
 import com.syl.snow.fragment.content3.StringFormatFragment;
@@ -89,6 +90,10 @@ public class Content3Activity extends AppCompatActivity {
                 break;
             case 7:
                 transaction.replace(R.id.fl_content3, new MediaPlayerFragment());
+                transaction.commit();
+                break;
+            case 8:
+                transaction.replace(R.id.fl_content3, new FloatingActionButtonFragment());
                 transaction.commit();
                 break;
             default:

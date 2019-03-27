@@ -5,6 +5,9 @@ import com.syl.snow.config.Constant;
 
 import org.junit.Test;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,8 +22,27 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
 //        assertEquals(4, 2 + 2);
-        int gapCount = getBetweenDays(new Date(2019, 1, 1), new Date(2019, 2, 1));
-        System.out.println(gapCount);
+//        int gapCount = getBetweenDays(new Date(2019, 1, 1), new Date(2019, 2, 1));
+//        System.out.println(gapCount);
+//        dateUseful();
+        String str = "22";
+        System.out.println(str.split(",").length);
+    }
+
+    private void dateUseful() {
+        String startDate = "2019-03-14";
+        String endDate = "2019-12-01";
+        DateFormat dateInstance = DateFormat.getDateInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date start = sdf.parse(startDate);
+            Date end = sdf.parse(endDate);
+            System.out.println("start==" + start + "--end==" + end);
+            boolean b = start.getTime() > end.getTime();
+            System.out.println("----"+b);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
