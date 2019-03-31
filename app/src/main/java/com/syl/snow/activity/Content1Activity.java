@@ -18,7 +18,9 @@ import com.syl.snow.fragment.content1.CheckBoxRvF;
 import com.syl.snow.fragment.content1.Demo1Fragment;
 import com.syl.snow.fragment.content1.DialogDemoFragment;
 import com.syl.snow.fragment.content1.DisplayMetricFragment;
+import com.syl.snow.fragment.content1.DoubleRecyclerViewFragment;
 import com.syl.snow.fragment.content1.DrawBoardFragment;
+import com.syl.snow.fragment.content1.ExpandableListViewFragment;
 import com.syl.snow.fragment.content1.FileFragment;
 import com.syl.snow.fragment.content1.GlideFragment;
 import com.syl.snow.fragment.content1.Http1Fragment;
@@ -224,6 +226,14 @@ public class Content1Activity extends AppCompatActivity {
                 break;
             case 33:
                 transaction.replace(R.id.fl_content1, new IvCircleFragment());
+                transaction.commit();
+                break;
+            case 34:
+                transaction.replace(R.id.fl_content1, new ExpandableListViewFragment());
+                transaction.commit();
+                break;
+            case 35:
+                transaction.replace(R.id.fl_content1, new DoubleRecyclerViewFragment());
                 transaction.commit();
                 break;
             default:
