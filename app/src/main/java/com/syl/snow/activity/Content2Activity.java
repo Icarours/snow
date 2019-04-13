@@ -9,7 +9,8 @@ import android.widget.Toast;
 
 import com.syl.snow.R;
 import com.syl.snow.bean.TitleBean;
-import com.syl.snow.fragment.content2.Text2Fragment;
+import com.syl.snow.fragment.content1.Demo1Fragment;
+import com.syl.snow.fragment.content2.StringFormatFragment2;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -44,14 +45,26 @@ public class Content2Activity extends AppCompatActivity {
         TitleBean titleBean = (TitleBean) intent.getSerializableExtra("title");
         mToolbar.setTitle(titleBean.getTitle());
         mToolbar.setSubtitle(titleBean.getDescription());
-        FragmentManager supportFragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = supportFragmentManager.beginTransaction();
-        Text2Fragment fragment = new Text2Fragment();
-        Bundle args = new Bundle();
-        args.putSerializable("title",titleBean);
-        fragment.setArguments(args);
-        transaction.replace(R.id.fl_content2, fragment);
-        transaction.commit();
+        initFragment(titleBean);
+    }
+
+    private void initFragment(TitleBean titleBean) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        switch (titleBean.getId()) {
+            case 0:
+                transaction.replace(R.id.fl_content2, new StringFormatFragment2());
+                transaction.commit();
+                break;
+            default:
+                Demo1Fragment fragment = new Demo1Fragment();
+                transaction.replace(R.id.fl_content1, fragment);
+                Bundle args = new Bundle();
+                args.putSerializable("title", titleBean);
+                fragment.setArguments(args);
+                transaction.commit();
+                break;
+        }
     }
 
     private void initToolBar() {

@@ -38,6 +38,7 @@ public class Content2Fragment extends BaseFragment {
     @Override
     public void initData() {
         mList = new ArrayList<>();
+        mList.add(new TitleBean(0,"字符串格式化", "String.format()的使用（Java字符串格式化）"));
         for (int i = 0; i < 60; i++) {
             mList.add(new TitleBean(i,"content2 title--" + i, "content2 desc --" + i));
         }
