@@ -11,6 +11,7 @@ import com.syl.snow.R;
 import com.syl.snow.bean.TitleBean;
 import com.syl.snow.fragment.content1.Demo1Fragment;
 import com.syl.snow.fragment.content2.StringFormatFragment2;
+import com.syl.snow.fragment.content2.VibratorFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -54,6 +55,10 @@ public class Content2Activity extends AppCompatActivity {
         switch (titleBean.getId()) {
             case 0:
                 transaction.replace(R.id.fl_content2, new StringFormatFragment2());
+                transaction.commit();
+                break;
+            case 1:
+                transaction.replace(R.id.fl_content2, new VibratorFragment());
                 transaction.commit();
                 break;
             default:

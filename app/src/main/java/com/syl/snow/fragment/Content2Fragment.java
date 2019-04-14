@@ -38,9 +38,10 @@ public class Content2Fragment extends BaseFragment {
     @Override
     public void initData() {
         mList = new ArrayList<>();
-        mList.add(new TitleBean(0,"字符串格式化", "String.format()的使用（Java字符串格式化）"));
+        mList.add(new TitleBean(0, "字符串格式化", "String.format()的使用（Java字符串格式化）"));
+        mList.add(new TitleBean(1, "Android手机振动器", "Android手机振动器Vibrator,Spinner下拉选择框"));
         for (int i = 0; i < 60; i++) {
-            mList.add(new TitleBean(i,"content2 title--" + i, "content2 desc --" + i));
+            mList.add(new TitleBean(i, "content2 title--" + i, "content2 desc --" + i));
         }
     }
 
@@ -56,10 +57,10 @@ public class Content2Fragment extends BaseFragment {
         ContentAdapter adapter = new ContentAdapter(R.layout.rv_title, mList);
         mRvTitle2.setAdapter(adapter);
         adapter.setOnItemClickListener((adapter1, view, position) -> {
-            Intent intent = new Intent(getContext(),Content2Activity.class);
-            intent.putExtra("title",mList.get(position));
+            Intent intent = new Intent(getContext(), Content2Activity.class);
+            intent.putExtra("title", mList.get(position));
             startActivity(intent);
-            Toast.makeText(getContext(), "clicked---"+position, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "clicked---" + position, Toast.LENGTH_SHORT).show();
         });
         return rootView;
     }
