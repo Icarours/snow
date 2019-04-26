@@ -19,7 +19,6 @@ import com.yanzhenjie.recyclerview.swipe.SwipeMenuCreator;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuItem;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuItemClickListener;
 import com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView;
-import com.yanzhenjie.recyclerview.swipe.touch.OnItemMovementListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,22 +118,6 @@ public class Rv3Fragment extends BaseFragment {
             }
         }
     };
-    private OnItemMovementListener mOnItemMovementListener = new OnItemMovementListener() {
-        @Override
-        public int onDragFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-            return 0;
-        }
-
-        @Override
-        public int onSwipeFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-            RecyclerView.Adapter adapter = recyclerView.getAdapter();
-            int itemCount = adapter.getItemCount();
-            if (itemCount % 2 == 1) {
-                return OnItemMovementListener.INVALID;
-            }
-            return 0;
-        }
-    };
     private TextAdapter mAdapter;
 
     @Nullable
@@ -152,9 +135,6 @@ public class Rv3Fragment extends BaseFragment {
         mAdapter = new TextAdapter(R.layout.rv_text1, mList);
         mRv.setAdapter(mAdapter);
         mRv.addItemDecoration(new RecyclerViewDivider(getContext(), RecyclerView.VERTICAL));
-
-        //添加OnItemMovementListener需要Adapter,应该在adapter初始化之后设置该监听
-        mRv.setOnItemMovementListener(mOnItemMovementListener);
         return rootView;
     }
 
