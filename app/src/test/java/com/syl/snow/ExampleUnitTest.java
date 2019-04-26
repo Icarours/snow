@@ -1,6 +1,7 @@
 package com.syl.snow;
 
 import com.alibaba.fastjson.JSONArray;
+import com.syl.snow.bean.ImageE;
 import com.syl.snow.config.Constant;
 
 import org.junit.Test;
@@ -25,15 +26,24 @@ public class ExampleUnitTest {
 //        int gapCount = getBetweenDays(new Date(2019, 1, 1), new Date(2019, 2, 1));
 //        System.out.println(gapCount);
 //        dateUseful();
-        String str = "22";
-        System.out.println(str.split(",").length);
+//        String str = "22";
+//        System.out.println(str.split(",").length);
+//        subStringTest1();
+        ImageE imageE1 = new ImageE(1,"11");
+        ImageE imageE2 = new ImageE(1,"11");
+        System.out.println(imageE1.equals(imageE2));
+    }
+
+    private void subStringTest1() {
+        String string = "123456789";
+        System.out.println(string.substring(0,string.length()-1));
     }
 
     private void dateUseful() {
-        String startDate = "2019-03-14";
-        String endDate = "2019-12-01";
+        String startDate = "2019-03-14 11:12:04";
+        String endDate = "2019-12-01 01:02:04";
         DateFormat dateInstance = DateFormat.getDateInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             Date start = sdf.parse(startDate);
             Date end = sdf.parse(endDate);

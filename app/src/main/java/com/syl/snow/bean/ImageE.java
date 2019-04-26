@@ -25,6 +25,24 @@ public class ImageE implements Serializable {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ImageE)) return false;
+
+        ImageE imageE = (ImageE) o;
+
+        if (getId() != imageE.getId()) return false;
+        return getPath() != null ? getPath().equals(imageE.getPath()) : imageE.getPath() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + (getPath() != null ? getPath().hashCode() : 0);
+        return result;
+    }
+
     public int getId() {
         return id;
     }
