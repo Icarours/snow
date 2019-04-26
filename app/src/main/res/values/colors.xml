@@ -45,4 +45,7 @@
     <color name="bg_color_40BBFD">#40BBFD</color>
     <color name="bg_color_31BFCF">#31BFCF</color>
     <color name="bg_color_E7D161">#E7D161</color>
+
+    <color name="red_normal">#FF0000</color>
+    <color name="red_pressed">#FF6666</color>
 </resources>

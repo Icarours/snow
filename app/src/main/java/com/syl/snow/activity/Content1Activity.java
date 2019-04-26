@@ -42,6 +42,7 @@ import com.syl.snow.fragment.content1.RoomFragment;
 import com.syl.snow.fragment.content1.Rv1Fragment;
 import com.syl.snow.fragment.content1.Rv2Fragment;
 import com.syl.snow.fragment.content1.Rv3Fragment;
+import com.syl.snow.fragment.content1.Rv4Fragment;
 import com.syl.snow.fragment.content1.VideoViewF;
 import com.syl.snow.fragment.content1.ViewAnimationFragment;
 import com.syl.snow.fragment.content1.ViewFragment;
@@ -234,6 +235,10 @@ public class Content1Activity extends AppCompatActivity {
                 break;
             case 35:
                 transaction.replace(R.id.fl_content1, new DoubleRecyclerViewFragment());
+                transaction.commit();
+                break;
+            case 37:
+                transaction.replace(R.id.fl_content1, new Rv4Fragment());
                 transaction.commit();
                 break;
             default:

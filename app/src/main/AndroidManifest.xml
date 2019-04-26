@@ -68,6 +68,8 @@
         <activity android:name=".base.BaseActivity"/>
         <activity android:name=".activity.PhotoViewActivity2">
         </activity>
+        <activity android:name=".activity.RvSlideActivity">
+        </activity>
     </application>
 
 </manifest>

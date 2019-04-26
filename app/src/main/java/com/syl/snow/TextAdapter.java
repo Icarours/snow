@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 /**
  * Created by Bright on 2019/1/7.
  *
- * @Describe 文本, Test
+ * @Describe 文本, Text
  * @Called
  */
 public class TextAdapter extends BaseQuickAdapter<TitleBean, BaseViewHolder> {
@@ -21,6 +21,6 @@ public class TextAdapter extends BaseQuickAdapter<TitleBean, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, TitleBean item) {
-        helper.setText(R.id.tv_text, item.toString());
+        helper.setText(R.id.tv_text, item.getTitle() + "\n" + item.getDescription());
     }
 }
