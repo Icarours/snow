@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.syl.snow.R;
 import com.syl.snow.bean.TitleBean;
 import com.syl.snow.fragment.content1.Demo1Fragment;
+import com.syl.snow.fragment.content3.AnimationFragment;
 import com.syl.snow.fragment.content3.ArrayListFragment;
 import com.syl.snow.fragment.content3.CalendarView2Fragment;
 import com.syl.snow.fragment.content3.CalendarViewFragment;
@@ -94,6 +95,10 @@ public class Content3Activity extends AppCompatActivity {
                 break;
             case 8:
                 transaction.replace(R.id.fl_content3, new FloatingActionButtonFragment());
+                transaction.commit();
+                break;
+            case 9:
+                transaction.replace(R.id.fl_content3, new AnimationFragment());
                 transaction.commit();
                 break;
             default:

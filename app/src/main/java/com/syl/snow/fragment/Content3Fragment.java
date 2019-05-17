@@ -47,9 +47,7 @@ public class Content3Fragment extends BaseFragment {
         mList.add(new TitleBean(6, "去除ArrayList中的重复对象", "去除ArrayList中的重复对象"));
         mList.add(new TitleBean(7, "MediaPlayer播放网络音乐", "MediaPlayer播放网络音乐"));
         mList.add(new TitleBean(8, "FloatingActionButton", "FloatingActionButton"));
-        for (int i = 20; i < 100; i++) {
-            mList.add(new TitleBean(i, "content3 title--" + i, "content3 desc--" + i));
-        }
+        mList.add(new TitleBean(9, "动画-控件平滑显隐", "动画-控件平滑显隐,ObjectAnimator竖直或者水平方向位移"));
     }
 
     @Nullable
