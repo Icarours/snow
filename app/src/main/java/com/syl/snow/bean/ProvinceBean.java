@@ -1,7 +1,7 @@
 package com.syl.snow.bean;
 
 
-import com.contrarywind.interfaces.IPickerViewData;
+import com.syl.snow.interfaces.IPickerViewData;
 
 import java.io.Serializable;
 
