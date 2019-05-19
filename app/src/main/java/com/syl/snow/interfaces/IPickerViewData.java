@@ -7,5 +7,5 @@ package com.syl.snow.interfaces;
  * @Called
  */
 public interface IPickerViewData {
-    public String getPickerViewText();
+    String getPickerViewText();
 }

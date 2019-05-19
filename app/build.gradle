@@ -73,4 +73,7 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:1.2.6'
     //一个界面滑动退出效果（比如自己滑动空白区域，就退出界面，而不用按手机返回键)
     implementation 'com.komi.slider:slider:0.4.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.viewpager:viewpager:1.0.0'
 }
