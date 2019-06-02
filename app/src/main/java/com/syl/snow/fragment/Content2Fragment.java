@@ -40,6 +40,7 @@ public class Content2Fragment extends BaseFragment {
         mList = new ArrayList<>();
         mList.add(new TitleBean(0, "字符串格式化", "String.format()的使用（Java字符串格式化）"));
         mList.add(new TitleBean(1, "Android手机振动器", "Android手机振动器Vibrator,Spinner下拉选择框"));
+        mList.add(new TitleBean(2, "Android通知", "Android通知,NotificationManager"));
         for (int i = 0; i < 60; i++) {
             mList.add(new TitleBean(i, "content2 title--" + i, "content2 desc --" + i));
         }

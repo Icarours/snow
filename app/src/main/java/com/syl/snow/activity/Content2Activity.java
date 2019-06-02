@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.syl.snow.R;
 import com.syl.snow.bean.TitleBean;
 import com.syl.snow.fragment.content1.Demo1Fragment;
+import com.syl.snow.fragment.content2.NotificationFragment;
 import com.syl.snow.fragment.content2.StringFormatFragment2;
 import com.syl.snow.fragment.content2.VibratorFragment;
 
@@ -27,7 +28,7 @@ import butterknife.ButterKnife;
  * 模块2的内容
  */
 public class Content2Activity extends AppCompatActivity {
-
+    private static final String TAG = Content2Activity.class.getSimpleName();
     @Bind(R.id.tv_title)
     TextView mTvTitle;
     @Bind(R.id.toolbar)
@@ -59,6 +60,10 @@ public class Content2Activity extends AppCompatActivity {
                 break;
             case 1:
                 transaction.replace(R.id.fl_content2, new VibratorFragment());
+                transaction.commit();
+                break;
+            case 2:
+                transaction.replace(R.id.fl_content2, new NotificationFragment());
                 transaction.commit();
                 break;
             default:
