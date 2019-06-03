@@ -9,6 +9,8 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.Scroller;
 
+import com.syl.snow.utils.LogUtils;
+
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * 侧滑菜单栏RecyclerView,交互流畅
  */
 public class SlideRecyclerView extends RecyclerView {
-
+    private static final String TAG = SlideRecyclerView.class.getSimpleName();
     /**
      * 最小速度
      */
@@ -247,8 +249,12 @@ public class SlideRecyclerView extends RecyclerView {
      * 使用Scroller关闭菜单栏
      */
     public void closeMenu() {
-        mScroller.startScroll(mLastView.getScrollX(), 0, -mLastView.getScrollX(), 0, 500);
-        invalidate();
+        if (mLastView != null) {
+            mScroller.startScroll(mLastView.getScrollX(), 0, -mLastView.getScrollX(), 0, 500);
+            invalidate();
+        } else {
+            LogUtils.d(TAG, "mLastView 为null");
+        }
     }
 
     /**
