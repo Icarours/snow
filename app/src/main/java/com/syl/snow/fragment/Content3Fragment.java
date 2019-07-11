@@ -48,6 +48,7 @@ public class Content3Fragment extends BaseFragment {
         mList.add(new TitleBean(7, "MediaPlayer播放网络音乐", "MediaPlayer播放网络音乐"));
         mList.add(new TitleBean(8, "FloatingActionButton", "FloatingActionButton"));
         mList.add(new TitleBean(9, "动画-控件平滑显隐", "动画-控件平滑显隐,ObjectAnimator竖直或者水平方向位移"));
+        mList.add(new TitleBean(10, "PackageManager", "PackageManager"));
     }
 
     @Nullable

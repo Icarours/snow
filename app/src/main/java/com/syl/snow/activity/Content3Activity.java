@@ -18,6 +18,7 @@ import com.syl.snow.fragment.content3.DataBindingFragment;
 import com.syl.snow.fragment.content3.DatePickerDialog2Fragment;
 import com.syl.snow.fragment.content3.FloatingActionButtonFragment;
 import com.syl.snow.fragment.content3.MediaPlayerFragment;
+import com.syl.snow.fragment.content3.PackageManagerFragment;
 import com.syl.snow.fragment.content3.SavePicFragment;
 import com.syl.snow.fragment.content3.StringFormatFragment;
 
@@ -35,7 +36,7 @@ import butterknife.ButterKnife;
  * 模块3的具体内容
  */
 public class Content3Activity extends AppCompatActivity {
-
+    private static final String TAG = Content3Activity.class.getSimpleName();
     @Bind(R.id.tv_title)
     TextView mTvTitle;
     @Bind(R.id.toolbar)
@@ -99,6 +100,10 @@ public class Content3Activity extends AppCompatActivity {
                 break;
             case 9:
                 transaction.replace(R.id.fl_content3, new AnimationFragment());
+                transaction.commit();
+                break;
+            case 10:
+                transaction.replace(R.id.fl_content3, new PackageManagerFragment());
                 transaction.commit();
                 break;
             default:
