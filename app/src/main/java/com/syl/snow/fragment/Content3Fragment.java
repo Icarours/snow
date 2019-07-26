@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.syl.snow.R;
+import com.syl.snow.activity.CameraSurfaceViewActivity;
 import com.syl.snow.activity.Content3Activity;
 import com.syl.snow.adpater.ContentAdapter;
 import com.syl.snow.base.BaseFragment;
@@ -49,6 +50,7 @@ public class Content3Fragment extends BaseFragment {
         mList.add(new TitleBean(8, "FloatingActionButton", "FloatingActionButton"));
         mList.add(new TitleBean(9, "动画-控件平滑显隐", "动画-控件平滑显隐,ObjectAnimator竖直或者水平方向位移"));
         mList.add(new TitleBean(10, "PackageManager", "PackageManager"));
+        mList.add(new TitleBean(11, "自定义相机", "Camera"));
     }
 
     @Nullable
@@ -63,9 +65,13 @@ public class Content3Fragment extends BaseFragment {
         ContentAdapter adapter = new ContentAdapter(R.layout.rv_title, mList);
         mRvTitle3.setAdapter(adapter);
         adapter.setOnItemClickListener((adapter1, view, position) -> {
-            Intent intent = new Intent(getContext(), Content3Activity.class);
-            intent.putExtra("title", mList.get(position));
-            startActivity(intent);
+            if (11 == position) {
+                startActivity(new Intent(getContext(),CameraSurfaceViewActivity.class));
+            } else {
+                Intent intent = new Intent(getContext(), Content3Activity.class);
+                intent.putExtra("title", mList.get(position));
+                startActivity(intent);
+            }
             Toast.makeText(getContext(), "clicked---" + position, Toast.LENGTH_SHORT).show();
         });
         return rootView;
