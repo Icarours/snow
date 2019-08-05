@@ -148,7 +148,7 @@ public class BaseFragment extends Fragment {
      * 圆形进度条对话框,网络请求,隐藏对话框
      */
     public void hideDialog() {
-        if (mDialog != null || mDialog.isShowing()) {
+        if (mDialog != null && mDialog.isShowing()) {
             mDialog.dismiss();
         }
     }

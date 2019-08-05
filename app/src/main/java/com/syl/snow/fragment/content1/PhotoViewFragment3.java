@@ -2,7 +2,7 @@ package com.syl.snow.fragment.content1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +11,12 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.syl.snow.R;
-import com.syl.snow.activity.PhotoViewActivity2;
+import com.syl.snow.activity.PhotoViewActivity3;
 import com.syl.snow.adpater.PhotoAdapter;
 import com.syl.snow.base.BaseFragment;
 import com.syl.snow.bean.Api;
 import com.syl.snow.bean.BaseApi;
 import com.syl.snow.bean.Params;
-import com.syl.snow.bean.TitleBean;
 import com.syl.snow.bean.WarnMessageE;
 import com.syl.snow.config.Constant;
 import com.syl.snow.utils.LogUtils;
@@ -39,13 +38,13 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by Bright on 2019/3/13.
+ * Created by Bright on 2019/8/5.
  *
- * @Describe Android图片查看器2
- * @Called
+ * @Describe
+ * @Called 图片查看器3
  */
-public class PhotoViewFragment2 extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
-    private static final String TAG = PhotoViewFragment2.class.getSimpleName();
+public class PhotoViewFragment3 extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+    private static final String TAG = PhotoViewFragment3.class.getSimpleName();
     @Bind(R.id.rv)
     RecyclerView mRv;
     @Bind(R.id.srl)
@@ -185,9 +184,16 @@ public class PhotoViewFragment2 extends BaseFragment implements SwipeRefreshLayo
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent = new Intent(getContext(), PhotoViewActivity2.class);
-                intent.putParcelableArrayListExtra("photo_list", (ArrayList<? extends Parcelable>) mList);
-                intent.putExtra("title", new TitleBean(0, "图片查看器2", "图片查看器2"));
+                StringBuilder sbImg = new StringBuilder();
+                for (WarnMessageE entity : mList) {
+                    if (!TextUtils.isEmpty(entity.getWarn_picture())) {
+                        sbImg.append(entity.getWarn_picture()).append(",");
+                    } else {
+                        LogUtils.d(TAG, "图片地址为空");
+                    }
+                }
+                Intent intent = new Intent(getContext(), PhotoViewActivity3.class);
+                intent.putExtra("photos", sbImg.toString());
                 intent.putExtra("position", position);
                 startActivity(intent);
             }

@@ -1,5 +1,6 @@
 package com.syl.snow.utils.glide;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -160,5 +161,53 @@ public class GlideUtil {
                     .apply(options)
                     .into(imageView);
         }
+    }
+    /*------------------ 上面是别人的代码 -----------------*/
+
+    /**
+     * @author syl
+     * create at 2019/8/5
+     * description:
+     * 加载原型形图片,不需要指定CornersTransform
+     */
+    public static void loadImage(Activity activity, String imgSrc, ImageView ivTarget, int defaultImg) {
+        RequestOptions options = new RequestOptions();
+        options.skipMemoryCache(false);
+        options.diskCacheStrategy(DiskCacheStrategy.ALL);
+        options.priority(Priority.HIGH);
+        options.error(defaultImg);
+        //设置占位符,默认
+        options.placeholder(defaultImg);
+        //设置错误符,默认
+        options.error(defaultImg);
+
+        Glide.with(activity)
+                .load(imgSrc)
+                .apply(options)
+                .into(ivTarget);
+    }
+
+    /**
+     * @author syl
+     * create at 2019/8/5
+     * description:
+     * 加载普通矩形图片
+     */
+    public static void loadImageCircle(Activity activity, String imgSrc, ImageView ivTarget, int defaultImg) {
+        RequestOptions options = new RequestOptions();
+        options.skipMemoryCache(false);
+        options.circleCrop();
+        options.diskCacheStrategy(DiskCacheStrategy.ALL);
+        options.priority(Priority.HIGH);
+        options.error(defaultImg);
+        //设置占位符,默认
+        options.placeholder(defaultImg);
+        //设置错误符,默认
+        options.error(defaultImg);
+
+        Glide.with(activity)
+                .load(imgSrc)
+                .apply(options)
+                .into(ivTarget);
     }
 }

@@ -78,6 +78,7 @@ public class Content1Fragment extends BaseFragment {
         mList.add(new TitleBean(35, "RecyclerView嵌套", "RecyclerView的条目还是RecyclerView"));
         mList.add(new TitleBean(36, "RecyclerView侧滑菜单-自定义", "RecyclerView从右向左侧滑菜单"));
         mList.add(new TitleBean(37, "RecyclerView侧滑菜单", "RecyclerView侧滑菜单,多种样式,有的可以滑动,有的可以滑动,还可以有多种样式"));
+        mList.add(new TitleBean(38, "图片查看器3", "图片查看器3"));
     }
 
     @Nullable

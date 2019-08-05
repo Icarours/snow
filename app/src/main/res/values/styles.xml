@@ -29,8 +29,8 @@
     </style>
     <!--对话框动画-->
     <style name="normalDialogAnim" parent="android:Animation.Dialog">
-       <!-- <item name="@android:windowEnterAnimation">@anim/normal_dialog_enter</item>
-        <item name="@android:windowExitAnimation">@anim/normal_dialog_exit</item>  -->
+        <!-- <item name="@android:windowEnterAnimation">@anim/normal_dialog_enter</item>
+         <item name="@android:windowExitAnimation">@anim/normal_dialog_exit</item>  -->
     </style>
 
     <style name="MyBottomNavigationStyle" parent="Widget.Design.BottomNavigationView">

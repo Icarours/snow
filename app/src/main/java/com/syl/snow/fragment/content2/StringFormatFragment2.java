@@ -24,6 +24,7 @@ import butterknife.OnClick;
  *
  * @Describe
  * @Called
+ * 格式化字符串
  */
 public class StringFormatFragment2 extends BaseFragment {
     private static final String TAG = StringFormatFragment2.class.getSimpleName();
