@@ -51,6 +51,8 @@ public class Content3Fragment extends BaseFragment {
         mList.add(new TitleBean(9, "动画-控件平滑显隐", "动画-控件平滑显隐,ObjectAnimator竖直或者水平方向位移"));
         mList.add(new TitleBean(10, "PackageManager", "PackageManager"));
         mList.add(new TitleBean(11, "自定义相机", "Camera"));
+        mList.add(new TitleBean(12, "从相册中选择图片", "从相册中选择图片"));
+        mList.add(new TitleBean(13, "从相册中选择图片2", "takephoto_library"));
     }
 
     @Nullable

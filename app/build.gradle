@@ -76,4 +76,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.viewpager:viewpager:1.0.0'
+    //拍照,从相册中选择图片
+    // https://mvnrepository.com/artifact/com.jph.takephoto/takephoto_library
+    implementation group: 'com.jph.takephoto', name: 'takephoto_library', version: '4.0.2'
 }

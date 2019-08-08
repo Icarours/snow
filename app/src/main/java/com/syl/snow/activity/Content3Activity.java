@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.syl.snow.R;
 import com.syl.snow.bean.TitleBean;
 import com.syl.snow.fragment.content1.Demo1Fragment;
+import com.syl.snow.fragment.content3.AlbumFragment;
+import com.syl.snow.fragment.content3.AlbumFragment2;
 import com.syl.snow.fragment.content3.AnimationFragment;
 import com.syl.snow.fragment.content3.ArrayListFragment;
 import com.syl.snow.fragment.content3.CalendarView2Fragment;
@@ -104,6 +106,14 @@ public class Content3Activity extends AppCompatActivity {
                 break;
             case 10:
                 transaction.replace(R.id.fl_content3, new PackageManagerFragment());
+                transaction.commit();
+                break;
+            case 12:
+                transaction.replace(R.id.fl_content3, new AlbumFragment());
+                transaction.commit();
+                break;
+            case 13:
+                transaction.replace(R.id.fl_content3, new AlbumFragment2());
                 transaction.commit();
                 break;
             default:
