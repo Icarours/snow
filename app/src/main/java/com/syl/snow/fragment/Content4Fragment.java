@@ -38,8 +38,10 @@ public class Content4Fragment extends BaseFragment {
     @Override
     public void initData() {
         mList = new ArrayList<>();
-        for (int i = 0; i < 60; i++) {
-            mList.add(new TitleBean(i,"content4 title--" + i, "content4 desc --" + i));
+        mList.add(new TitleBean(0, "mvc", "mvc简单举例"));
+        mList.add(new TitleBean(1, "mvc", "mvp简单举例"));
+        for (int i = 10; i < 60; i++) {
+            mList.add(new TitleBean(i, "content4 title--" + i, "content4 desc --" + i));
         }
     }
 
@@ -55,10 +57,10 @@ public class Content4Fragment extends BaseFragment {
         ContentAdapter adapter = new ContentAdapter(R.layout.rv_title, mList);
         mRvTitle4.setAdapter(adapter);
         adapter.setOnItemClickListener((adapter1, view, position) -> {
-            Intent intent = new Intent(getContext(),Content4Activity.class);
-            intent.putExtra("title",mList.get(position));
+            Intent intent = new Intent(getContext(), Content4Activity.class);
+            intent.putExtra("title", mList.get(position));
             startActivity(intent);
-            Toast.makeText(getContext(), "clicked---"+position, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "clicked---" + position, Toast.LENGTH_SHORT).show();
         });
         return rootView;
     }
