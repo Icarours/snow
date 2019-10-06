@@ -1,17 +1,27 @@
 package com.syl.snow.fragment.content4.mvc.v;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.syl.snow.R;
 import com.syl.snow.base.BaseFragment;
+import com.syl.snow.fragment.content4.mvc.m.HttpRequestModel;
+import com.syl.snow.fragment.content4.mvc.m.IMvcRequestCallbackListener;
+import com.syl.snow.fragment.content4.mvc.m.WangYiNewsAdapter;
+import com.syl.snow.fragment.content4.mvc.m.WangYiNewsApiE;
+import com.syl.snow.fragment.content4.mvc.m.WangYiNewsE;
 import com.syl.snow.utils.LogUtils;
-import com.zhouyou.http.EasyHttp;
-import com.zhouyou.http.callback.CallBack;
-import com.zhouyou.http.exception.ApiException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,7 +36,7 @@ import butterknife.ButterKnife;
  * Created by Bright on 2019/10/5.
  *
  * @Describe
- * @Called mvc
+ * @Called mvc, Fragment/Activity充当controller和View
  */
 public class MvcFragment extends BaseFragment {
     private static final String TAG = MvcFragment.class.getSimpleName();
@@ -38,45 +48,131 @@ public class MvcFragment extends BaseFragment {
     TextView mTvNoData;
     @Bind(R.id.tv_retry)
     TextView mTvRetry;
+    private List<WangYiNewsE> mList = new ArrayList<>();
+    private WangYiNewsAdapter mAdapter;
+    private int index = 1;
+    private boolean isRefresh = false;
+    private boolean isRefreshPullUp = false;
+    private LinearLayoutManager mLinearLayoutManager;
+    private int mLastVisibleItem;
+    private int mFirstVisibleItem;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_mvc, container, false);
         ButterKnife.bind(this, rootView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        mRv.setLayoutManager(linearLayoutManager);
+        mLinearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        mRv.setLayoutManager(mLinearLayoutManager);
         mRv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        mSrl.setOnRefreshListener(() -> {
+            index = 1;
+            isRefresh = true;
+            netRequest();
+        });
+
+        mRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                mLastVisibleItem = mLinearLayoutManager.findLastVisibleItemPosition();
+                mFirstVisibleItem = mLinearLayoutManager.findFirstVisibleItemPosition();
+
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && mLinearLayoutManager.getItemCount() > 0 &&
+                        mLastVisibleItem + 1 == mList.size()) {
+                    mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+                        @Override
+                        public void onLoadMoreRequested() {
+                            isRefreshPullUp = true;
+                            index++;
+                            netRequest();
+                        }
+                    }, mRv);
+                }
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                mLastVisibleItem = mLinearLayoutManager.findLastVisibleItemPosition();
+                mFirstVisibleItem = mLinearLayoutManager.findFirstVisibleItemPosition();
+            }
+        });
         return rootView;
     }
 
     @Override
     public void initData() {
         super.initData();
-        String url = "https://api.apiopen.top/getWangYiNews";
-        EasyHttp.post(url)
-                .params("page", "1")
-                .params("count", "16")
-                .execute(new CallBack<String>() {
-                    @Override
-                    public void onStart() {
-                        LogUtils.d(TAG, "---onStart()");
-                    }
+        netRequest();
+    }
 
-                    @Override
-                    public void onCompleted() {
-                        LogUtils.d(TAG, "---onCompleted");
-                    }
+    private void netRequest() {
+        String url = "https://api.apiopen.top/getWangYiNews?count=16&page=" + index;
+        LogUtils.d(TAG, url);
+        new HttpRequestModel().httpGetRequest(url, new IMvcRequestCallbackListener<String>() {
 
-                    @Override
-                    public void onError(ApiException e) {
-                        LogUtils.d(TAG, "---onError");
-                    }
+            @Override
+            public void onSuccess(String successData) {
+                if (isRefresh) {
+                    mList.clear();
+                    isRefresh = false;
+                    new Handler().postDelayed(() -> mSrl.setRefreshing(false), 3000);
+                }
+                if (isRefreshPullUp) {
+                    isRefreshPullUp = false;
+                    new Handler().postDelayed(() -> mAdapter.loadMoreComplete(), 3000);
+                }
+                LogUtils.d(TAG, successData);
+                parseData(successData);
+            }
 
-                    @Override
-                    public void onSuccess(String s) {
-                        LogUtils.d(TAG, "---onSuccess");
+            @Override
+            public void onFailure(String failureData) {
+                LogUtils.d(TAG, failureData);
+            }
+        });
+    }
+
+    private void parseData(String successData) {
+        if (!TextUtils.isEmpty(successData)) {
+            WangYiNewsApiE wangYiNewsApiE = JSONObject.parseObject(successData, WangYiNewsApiE.class);
+            if (wangYiNewsApiE.getCode() == 200) {
+                String result = wangYiNewsApiE.getResult();
+                if (!TextUtils.isEmpty(result)) {
+                    List<WangYiNewsE> wangYiNewsES = JSONObject.parseArray(result, WangYiNewsE.class);
+                    if (wangYiNewsES.size() > 0) {
+                        mList.addAll(wangYiNewsES);
+                        initAdapter();
+                    } else {
+                        LogUtils.d(TAG, "网络请求返回的数据集长度为0");
                     }
-                });
+                } else {
+                    LogUtils.d(TAG, "result为空");
+                }
+            } else {
+                LogUtils.d(TAG, "网络请求返回code部位200");
+            }
+        } else {
+            LogUtils.d(TAG, "数据为空");
+        }
+    }
+
+    private void initAdapter() {
+        if (mAdapter == null) {
+            mAdapter = new WangYiNewsAdapter(getActivity(), R.layout.rv_wang_yi_news, mList);
+            mRv.setAdapter(mAdapter);
+        } else {
+            mAdapter.notifyDataSetChanged();
+        }
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(getActivity(), WangYiNewsActivity.class);
+                intent.putExtra("path", mList.get(position).getPath());
+                LogUtils.d(TAG, mList.get(position).getPath());
+                startActivity(intent);
+            }
+        });
     }
 }

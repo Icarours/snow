@@ -39,7 +39,7 @@ public class Content4Fragment extends BaseFragment {
     public void initData() {
         mList = new ArrayList<>();
         mList.add(new TitleBean(0, "mvc", "mvc简单举例"));
-        mList.add(new TitleBean(1, "mvc", "mvp简单举例"));
+        mList.add(new TitleBean(1, "mvp", "mvp简单举例"));
         for (int i = 10; i < 60; i++) {
             mList.add(new TitleBean(i, "content4 title--" + i, "content4 desc --" + i));
         }

@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @Called 网易新闻
  * https://api.apiopen.top/getWangYiNews?page=1&count=12
  */
-public class WangYiNews implements Serializable {
+public class WangYiNewsE implements Serializable {
 
     /**
      * path : https://news.163.com/19/1005/09/EQNDFVKM0001899N.html
@@ -23,12 +23,12 @@ public class WangYiNews implements Serializable {
     private String title;
     private String passtime;
 
-    public WangYiNews() {
+    public WangYiNewsE() {
     }
 
     @Override
     public String toString() {
-        return "WangYiNews{" +
+        return "WangYiNewsE{" +
                 "path='" + path + '\'' +
                 ", image='" + image + '\'' +
                 ", title='" + title + '\'' +
