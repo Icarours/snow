@@ -46,7 +46,7 @@ public class HttpRequestModel implements IMvcRequestHttp {
     public void httpPostRequest(String url, IMvcRequestCallbackListener requestCallbackListener) {
         EasyHttp.post(url)
                 .params("page", "1")
-                .params("count", "16")
+                .params("count", "16")//如果有加载更多,至少页面索引是可变的
                 .execute(new CallBack<String>() {
                     @Override
                     public void onStart() {

@@ -2,7 +2,6 @@ package com.syl.snow.fragment.content4.mvc.v;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +50,7 @@ public class MvcFragment extends BaseFragment {
     private List<WangYiNewsE> mList = new ArrayList<>();
     private WangYiNewsAdapter mAdapter;
     private int index = 1;
-    private boolean isRefresh = false;
+    private boolean isRefreshPullDown = false;
     private boolean isRefreshPullUp = false;
     private LinearLayoutManager mLinearLayoutManager;
     private int mLastVisibleItem;
@@ -67,26 +66,37 @@ public class MvcFragment extends BaseFragment {
         mRv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mSrl.setOnRefreshListener(() -> {
             index = 1;
-            isRefresh = true;
+            isRefreshPullDown = true;
             netRequest();
         });
+        mSrl.setColorSchemeColors(getResources().getColor(R.color.colorAccent));
+//        initListener();
+        return rootView;
+    }
 
+    /**
+     * 监听RecyclerView滑动
+     */
+    private void initListener() {
+        //给RecyclerView添加滑动监听,在RecyclerView滑动到底部,触发加载更多
         mRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+                LogUtils.d(TAG, "----" + newState);
                 mLastVisibleItem = mLinearLayoutManager.findLastVisibleItemPosition();
                 mFirstVisibleItem = mLinearLayoutManager.findFirstVisibleItemPosition();
 
-                if (newState == RecyclerView.SCROLL_STATE_IDLE && mLinearLayoutManager.getItemCount() > 0 &&
-                        mLastVisibleItem + 1 == mList.size()) {
-                    mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
-                        @Override
-                        public void onLoadMoreRequested() {
-                            isRefreshPullUp = true;
-                            index++;
-                            netRequest();
-                        }
+                /**
+                 * 这种加载更多的方式如果不使用BRVAH的RequestLoadMore,就需要自己写footer,我自己写的不好,没搞定;
+                 * 如果使用,只有在快速滑动的时候有效,缓慢滑动不能触发加载更多
+                 */
+                if ((newState == RecyclerView.SCROLL_STATE_IDLE || newState == RecyclerView.SCROLL_STATE_DRAGGING) &&
+                        mLinearLayoutManager.getItemCount() > 0 && mLastVisibleItem + 1 == mList.size()) {
+                    mAdapter.setOnLoadMoreListener(() -> {
+                        isRefreshPullUp = true;
+                        index++;
+                        netRequest();
                     }, mRv);
                 }
             }
@@ -98,7 +108,6 @@ public class MvcFragment extends BaseFragment {
                 mFirstVisibleItem = mLinearLayoutManager.findFirstVisibleItemPosition();
             }
         });
-        return rootView;
     }
 
     @Override
@@ -107,6 +116,9 @@ public class MvcFragment extends BaseFragment {
         netRequest();
     }
 
+    /**
+     * 网络请求
+     */
     private void netRequest() {
         String url = "https://api.apiopen.top/getWangYiNews?count=16&page=" + index;
         LogUtils.d(TAG, url);
@@ -114,17 +126,14 @@ public class MvcFragment extends BaseFragment {
 
             @Override
             public void onSuccess(String successData) {
-                if (isRefresh) {
+                if (isRefreshPullDown) {
                     mList.clear();
-                    isRefresh = false;
-                    new Handler().postDelayed(() -> mSrl.setRefreshing(false), 3000);
-                }
-                if (isRefreshPullUp) {
-                    isRefreshPullUp = false;
-                    new Handler().postDelayed(() -> mAdapter.loadMoreComplete(), 3000);
+                    isRefreshPullDown = false;
+                    mHandler.postDelayed(() -> mSrl.setRefreshing(false), 1200);
                 }
                 LogUtils.d(TAG, successData);
                 parseData(successData);
+                loadMore();
             }
 
             @Override
@@ -134,15 +143,43 @@ public class MvcFragment extends BaseFragment {
         });
     }
 
+    /**
+     * 加载更多
+     */
+    private void loadMore() {
+        if (mList.size() % 16 == 0) {
+            index++;
+            mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+                @Override
+                public void onLoadMoreRequested() {
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            netRequest();
+                        }
+                    }, 1000);
+                }
+            }, mRv);
+            mAdapter.loadMoreComplete();
+        } else {
+            mAdapter.loadMoreEnd();
+        }
+    }
+
+    /**
+     * 解析数据
+     *
+     * @param successData
+     */
     private void parseData(String successData) {
         if (!TextUtils.isEmpty(successData)) {
             WangYiNewsApiE wangYiNewsApiE = JSONObject.parseObject(successData, WangYiNewsApiE.class);
             if (wangYiNewsApiE.getCode() == 200) {
                 String result = wangYiNewsApiE.getResult();
                 if (!TextUtils.isEmpty(result)) {
-                    List<WangYiNewsE> wangYiNewsES = JSONObject.parseArray(result, WangYiNewsE.class);
-                    if (wangYiNewsES.size() > 0) {
-                        mList.addAll(wangYiNewsES);
+                    List<WangYiNewsE> list = JSONObject.parseArray(result, WangYiNewsE.class);
+                    if (list.size() > 0) {
+                        mList.addAll(list);
                         initAdapter();
                     } else {
                         LogUtils.d(TAG, "网络请求返回的数据集长度为0");
@@ -158,6 +195,9 @@ public class MvcFragment extends BaseFragment {
         }
     }
 
+    /**
+     * 初始化Adapter
+     */
     private void initAdapter() {
         if (mAdapter == null) {
             mAdapter = new WangYiNewsAdapter(getActivity(), R.layout.rv_wang_yi_news, mList);

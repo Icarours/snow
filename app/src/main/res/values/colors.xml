@@ -48,4 +48,5 @@
 
     <color name="red_normal">#FF0000</color>
     <color name="red_pressed">#FF6666</color>
+    <color name="transparent">#00000000</color>
 </resources>
