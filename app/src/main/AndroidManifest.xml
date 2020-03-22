@@ -53,11 +53,12 @@
         <activity
             android:name=".activity.JZVideoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="fullSensor"></activity>
+<!--        更新as后android:screenOrientation="fullSensor"不能设置portrait和landscape-->
         <activity
             android:name=".activity.VideoViewActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="fullSensor"></activity>
         <activity android:name=".activity.PhotoViewActivity"></activity>
         <activity android:name=".base.BaseActivity" />
         <activity android:name=".activity.PhotoViewActivity2"></activity>

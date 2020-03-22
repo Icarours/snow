@@ -191,9 +191,9 @@ public class Content1Activity extends AppCompatActivity {
                 transaction.replace(R.id.fl_content1, new DrawBoardFragment());
                 transaction.commit();
                 break;
-            case 24:
-                startActivity(new Intent(getApplicationContext(), JZVideoActivity.class));
-                break;
+//            case 24:
+//                startActivity(new Intent(getApplicationContext(), JZVideoActivity.class));
+//                break;
             case 25:
                 transaction.replace(R.id.fl_content1, new CalendarFragment());
                 transaction.commit();

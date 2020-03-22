@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.syl.snow.R;
 import com.syl.snow.activity.Content1Activity;
+import com.syl.snow.activity.JZVideoActivity;
 import com.syl.snow.activity.RvSlideActivity;
 import com.syl.snow.adpater.ContentAdapter;
 import com.syl.snow.base.BaseFragment;
@@ -96,7 +97,9 @@ public class Content1Fragment extends BaseFragment {
         mRvTitle1.setAdapter(adapter);
         adapter.setOnItemClickListener((adapter1, view, position) -> {
             Toast.makeText(getContext(), "clicked---" + position, Toast.LENGTH_SHORT).show();
-            if (position == 36) {
+            if (position == 24) {
+                startActivity(new Intent(getContext(), JZVideoActivity.class));
+            } else if (position == 36) {
                 startActivity(new Intent(getContext(), RvSlideActivity.class));
             } else {
                 Intent intent = new Intent(getContext(), Content1Activity.class);

@@ -47,7 +47,7 @@ public class JZVideoActivity extends AppCompatActivity {
         //4设置内置视频的高度， 可以去除黑边
         JZVideoPlayer.setVideoImageDisplayType(JZVideoPlayer.VIDEO_IMAGE_DISPLAY_TYPE_FILL_PARENT);
         //5.播放视频
-        mMJC.TOOL_BAR_EXIST = false;
+        JZVideoPlayer.TOOL_BAR_EXIST = false;
         mMJC.setUp("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
                 , JZVideoPlayerStandard.SCROLL_AXIS_HORIZONTAL, "这视频真好，去除黑边了");
 //        6 视频的缩略图地址
