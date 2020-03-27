@@ -28,4 +28,9 @@
     <string name="picker_custom_parent">自定义父容器</string>
     <string name="picker_non_linkage">条件选择器(不联动)</string>
     <string name="picker_json_parse_sample">省市区Json文件解析示例</string>
+    <string name="broadcast1">标准广播</string>
+    <string name="broadcast2">有序广播</string>
+    <string name="btn_broadcast_register">注册所有广播</string>
+    <string name="broadcast3">发送本地广播-同步</string>
+    <string name="broadcast4">发送本地广播-异步</string>
 </resources>

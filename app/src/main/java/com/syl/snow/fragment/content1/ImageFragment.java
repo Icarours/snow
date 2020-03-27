@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Bright on 2018/12/23.
@@ -59,7 +60,7 @@ public class ImageFragment extends BaseFragment {
                         });
                 break;
             case R.id.btn_load_img2:
-                rxPermissions
+                Disposable dis = rxPermissions
                         .request(Manifest.permission.READ_EXTERNAL_STORAGE)
                         .subscribe(granted -> {
                             if (granted) { // Always true pre-M

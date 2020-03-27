@@ -23,7 +23,7 @@ import androidx.fragment.app.FragmentTransaction;
  * 主界面
  */
 public class MainActivity extends AppCompatActivity {
-
+    private static final String TAG = MainActivity.class.getSimpleName();
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -48,8 +48,9 @@ public class MainActivity extends AppCompatActivity {
                     transaction.replace(R.id.fl_content, new Content4Fragment());
                     transaction.commit();
                     return true;
+                default:
+                    return false;
             }
-            return false;
         }
     };
 

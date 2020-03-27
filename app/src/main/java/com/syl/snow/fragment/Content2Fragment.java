@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.syl.snow.R;
+import com.syl.snow.activity.BroadcastReceiverActivity;
 import com.syl.snow.activity.Content2Activity;
 import com.syl.snow.adpater.ContentAdapter;
 import com.syl.snow.base.BaseFragment;
@@ -41,7 +42,8 @@ public class Content2Fragment extends BaseFragment {
         mList.add(new TitleBean(0, "字符串格式化", "String.format()的使用（Java字符串格式化）"));
         mList.add(new TitleBean(1, "Android手机振动器", "Android手机振动器Vibrator,Spinner下拉选择框"));
         mList.add(new TitleBean(2, "Android通知", "Android通知,NotificationManager"));
-        for (int i = 0; i < 60; i++) {
+        mList.add(new TitleBean(3, "BroadcastReceiver", "Android广播BroadcastReceiver"));
+        for (int i = 10; i < 60; i++) {
             mList.add(new TitleBean(i, "content2 title--" + i, "content2 desc --" + i));
         }
     }
@@ -58,7 +60,12 @@ public class Content2Fragment extends BaseFragment {
         ContentAdapter adapter = new ContentAdapter(R.layout.rv_title, mList);
         mRvTitle2.setAdapter(adapter);
         adapter.setOnItemClickListener((adapter1, view, position) -> {
-            Intent intent = new Intent(getContext(), Content2Activity.class);
+            Intent intent;
+            if (position == 3) {
+                intent = new Intent(getContext(), BroadcastReceiverActivity.class);
+            } else {
+                intent = new Intent(getContext(), Content2Activity.class);
+            }
             intent.putExtra("title", mList.get(position));
             startActivity(intent);
             Toast.makeText(getContext(), "clicked---" + position, Toast.LENGTH_SHORT).show();

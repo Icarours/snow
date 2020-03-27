@@ -1,6 +1,5 @@
 package com.syl.snow.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.FrameLayout;
@@ -43,8 +42,7 @@ public class Content2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_content2);
         ButterKnife.bind(this);
         initToolBar();
-        Intent intent = getIntent();
-        TitleBean titleBean = (TitleBean) intent.getSerializableExtra("title");
+        TitleBean titleBean = (TitleBean) getIntent().getSerializableExtra("title");
         mToolbar.setTitle(titleBean.getTitle());
         mToolbar.setSubtitle(titleBean.getDescription());
         initFragment(titleBean);
@@ -81,6 +79,7 @@ public class Content2Activity extends AppCompatActivity {
         mToolbar.inflateMenu(R.menu.menu1);
         mToolbar.setOnMenuItemClickListener(menuItem -> {
             switch (menuItem.getItemId()) {
+                default:
                 case R.id.item1:
                     Toast.makeText(Content2Activity.this, "item1 was clicked", Toast.LENGTH_SHORT).show();
                     break;
