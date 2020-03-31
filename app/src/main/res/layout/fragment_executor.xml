@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_executor1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="newFixedThreadPool" />
+
+    <Button
+        android:id="@+id/btn_executor2"
+        android:layout_width="match_parent"
+        android:textAllCaps="false"
+        android:layout_height="wrap_content"
+        android:text="newSingleThreadExecutor" />
+
+    <Button
+        android:id="@+id/btn_executor3"
+        android:layout_width="match_parent"
+        android:textAllCaps="false"
+        android:layout_height="wrap_content"
+        android:text="newCachedThreadPool" />
+
+    <Button
+        android:id="@+id/btn_executor4"
+        android:layout_width="match_parent"
+        android:textAllCaps="false"
+        android:layout_height="wrap_content"
+        android:text="newScheduledThreadPool" />
+
+    <Button
+        android:id="@+id/btn_executor5"
+        android:layout_width="match_parent"
+        android:textAllCaps="false"
+        android:layout_height="wrap_content"
+        android:text="newSingleThreadScheduledExecutor" />
+
+    <Button
+        android:id="@+id/btn_executor6"
+        android:layout_width="match_parent"
+        android:textAllCaps="false"
+        android:layout_height="wrap_content"
+        android:text="自定义线程池ThreadPoolExecutor" />
+</LinearLayout>

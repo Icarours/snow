@@ -16,6 +16,7 @@ import com.syl.snow.bean.TitleBean;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,6 +44,8 @@ public class Content2Fragment extends BaseFragment {
         mList.add(new TitleBean(1, "Android手机振动器", "Android手机振动器Vibrator,Spinner下拉选择框"));
         mList.add(new TitleBean(2, "Android通知", "Android通知,NotificationManager"));
         mList.add(new TitleBean(3, "BroadcastReceiver", "Android广播BroadcastReceiver"));
+        mList.add(new TitleBean(4, "线程池", "线程池"));
+        mList.add(new TitleBean(5, "读取手机通讯录", "读取手机通讯录,姓名,电话"));
         for (int i = 10; i < 60; i++) {
             mList.add(new TitleBean(i, "content2 title--" + i, "content2 desc --" + i));
         }
@@ -56,7 +59,7 @@ public class Content2Fragment extends BaseFragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         mRvTitle2.setLayoutManager(linearLayoutManager);
-        mRvTitle2.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        mRvTitle2.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getContext()), DividerItemDecoration.VERTICAL));
         ContentAdapter adapter = new ContentAdapter(R.layout.rv_title, mList);
         mRvTitle2.setAdapter(adapter);
         adapter.setOnItemClickListener((adapter1, view, position) -> {

@@ -8,10 +8,14 @@ import android.widget.Toast;
 
 import com.syl.snow.R;
 import com.syl.snow.bean.TitleBean;
+import com.syl.snow.fragment.ExecutorFragment;
 import com.syl.snow.fragment.content1.Demo1Fragment;
+import com.syl.snow.fragment.content2.ContactFragment;
 import com.syl.snow.fragment.content2.NotificationFragment;
 import com.syl.snow.fragment.content2.StringFormatFragment2;
 import com.syl.snow.fragment.content2.VibratorFragment;
+
+import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -43,7 +47,7 @@ public class Content2Activity extends AppCompatActivity {
         ButterKnife.bind(this);
         initToolBar();
         TitleBean titleBean = (TitleBean) getIntent().getSerializableExtra("title");
-        mToolbar.setTitle(titleBean.getTitle());
+        mToolbar.setTitle(Objects.requireNonNull(titleBean).getTitle());
         mToolbar.setSubtitle(titleBean.getDescription());
         initFragment(titleBean);
     }
@@ -62,6 +66,14 @@ public class Content2Activity extends AppCompatActivity {
                 break;
             case 2:
                 transaction.replace(R.id.fl_content2, new NotificationFragment());
+                transaction.commit();
+                break;
+            case 4:
+                transaction.replace(R.id.fl_content2, new ExecutorFragment());
+                transaction.commit();
+                break;
+            case 5:
+                transaction.replace(R.id.fl_content2, new ContactFragment());
                 transaction.commit();
                 break;
             default:
