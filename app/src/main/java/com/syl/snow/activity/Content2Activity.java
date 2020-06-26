@@ -7,6 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.syl.snow.R;
+import com.syl.snow.base.BaseFragment;
 import com.syl.snow.bean.TitleBean;
 import com.syl.snow.fragment.ExecutorFragment;
 import com.syl.snow.fragment.content1.Demo1Fragment;
@@ -14,6 +15,7 @@ import com.syl.snow.fragment.content2.ContactFragment;
 import com.syl.snow.fragment.content2.NotificationFragment;
 import com.syl.snow.fragment.content2.StringFormatFragment2;
 import com.syl.snow.fragment.content2.VibratorFragment;
+import com.syl.snow.fragment.content2.WifiFragment;
 
 import java.util.Objects;
 
@@ -55,36 +57,35 @@ public class Content2Activity extends AppCompatActivity {
     private void initFragment(TitleBean titleBean) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
+        BaseFragment baseFragment;
         switch (titleBean.getId()) {
             case 0:
-                transaction.replace(R.id.fl_content2, new StringFormatFragment2());
-                transaction.commit();
+                baseFragment = new StringFormatFragment2();
                 break;
             case 1:
-                transaction.replace(R.id.fl_content2, new VibratorFragment());
-                transaction.commit();
+                baseFragment = new VibratorFragment();
                 break;
             case 2:
-                transaction.replace(R.id.fl_content2, new NotificationFragment());
-                transaction.commit();
+                baseFragment = new NotificationFragment();
                 break;
             case 4:
-                transaction.replace(R.id.fl_content2, new ExecutorFragment());
-                transaction.commit();
+                baseFragment = new ExecutorFragment();
                 break;
             case 5:
-                transaction.replace(R.id.fl_content2, new ContactFragment());
-                transaction.commit();
+                baseFragment = new ContactFragment();
+                break;
+            case 6:
+                baseFragment = new WifiFragment();
                 break;
             default:
-                Demo1Fragment fragment = new Demo1Fragment();
-                transaction.replace(R.id.fl_content1, fragment);
+                baseFragment = new Demo1Fragment();
                 Bundle args = new Bundle();
                 args.putSerializable("title", titleBean);
-                fragment.setArguments(args);
-                transaction.commit();
+                baseFragment.setArguments(args);
                 break;
         }
+        transaction.replace(R.id.fl_content2, baseFragment);
+        transaction.commit();
     }
 
     private void initToolBar() {

@@ -47,11 +47,10 @@ public class MobileFragment extends BaseFragment {
         mSb.append("当前手机的参数\n\n");
 
         Field[] fields = Build.class.getDeclaredFields();
-        for (Field field :
-                fields) {
+        for (Field field : fields) {
             try {
                 field.setAccessible(true);
-                mSb.append("Build." + field.getName() + "===" + field.get(null) + "\n");
+                mSb.append("Build.").append(field.getName()).append("===").append(field.get(null)).append("\n");
                 Log.d(TAG, "Build." + field.getName() + "===" + field.get(null));
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
@@ -63,7 +62,7 @@ public class MobileFragment extends BaseFragment {
             try {
                 field.setAccessible(true);
                 Log.d(TAG, "Build.VERSION." + field.getName() + " === " + field.get(null));
-                mSb.append("Build.VERSION." + field.getName() + " === " + field.get(null) + "\n");
+                mSb.append("Build.VERSION.").append(field.getName()).append(" === ").append(field.get(null)).append("\n");
             } catch (Exception e) {
                 Log.e(TAG, "an error occurred when collect crash info", e);
             }

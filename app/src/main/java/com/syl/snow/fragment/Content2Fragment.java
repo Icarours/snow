@@ -46,6 +46,7 @@ public class Content2Fragment extends BaseFragment {
         mList.add(new TitleBean(3, "BroadcastReceiver", "Android广播BroadcastReceiver"));
         mList.add(new TitleBean(4, "线程池", "线程池"));
         mList.add(new TitleBean(5, "读取手机通讯录", "读取手机通讯录,姓名,电话"));
+        mList.add(new TitleBean(6, "获取当前手机网络信息", "获取当前手机网络信息,WiFi信息"));
         for (int i = 10; i < 60; i++) {
             mList.add(new TitleBean(i, "content2 title--" + i, "content2 desc --" + i));
         }
