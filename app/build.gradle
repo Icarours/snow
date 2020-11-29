@@ -4,7 +4,7 @@ android {
     compileSdkVersion 30
     defaultConfig {
         applicationId "com.syl.snow"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -25,14 +25,26 @@ android {
     dataBinding {
         enabled true
     }
+    flavorDimensions 'module'
+    productFlavors {
+        baidu {
+            dimension 'module'
+        }
+        xiaomi {
+            dimension 'module'
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
-    implementation 'com.google.android.material:material:1.1.0-alpha01'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0-alpha01'
+    //不同的渠道加载不同module的资源
+    xiaomiImplementation project(path: ':xiaomi')
+    baiduImplementation project(path: ':baidu')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'

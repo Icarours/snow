@@ -7,6 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.syl.xiaomi.MultiActivity;
 import com.syl.snow.R;
 import com.syl.snow.activity.Content4Activity;
 import com.syl.snow.adpater.ContentAdapter;
@@ -16,11 +23,6 @@ import com.syl.snow.bean.TitleBean;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -40,6 +42,7 @@ public class Content4Fragment extends BaseFragment {
         mList = new ArrayList<>();
         mList.add(new TitleBean(0, "mvc", "mvc简单举例"));
         mList.add(new TitleBean(1, "mvp", "mvp简单举例"));
+        mList.add(new TitleBean(2, "多渠道", "不同的渠道引用不同的module"));
         for (int i = 10; i < 60; i++) {
             mList.add(new TitleBean(i, "content4 title--" + i, "content4 desc --" + i));
         }
@@ -57,12 +60,30 @@ public class Content4Fragment extends BaseFragment {
         ContentAdapter adapter = new ContentAdapter(R.layout.rv_title, mList);
         mRvTitle4.setAdapter(adapter);
         adapter.setOnItemClickListener((adapter1, view, position) -> {
-            Intent intent = new Intent(getContext(), Content4Activity.class);
-            intent.putExtra("title", mList.get(position));
-            startActivity(intent);
-            Toast.makeText(getContext(), "clicked---" + position, Toast.LENGTH_SHORT).show();
+            stepIntoActivity(position);
         });
         return rootView;
+    }
+
+    /**
+     * 根据索引判断应该跳转到那个Activity
+     *
+     * @param position 条目索引
+     */
+    private void stepIntoActivity(int position) {
+        Intent intent;
+        switch (position) {
+            case 2://多渠道，切换不同渠道的时候居然不能自动导包，要我自己手动改一下，这个新版的Android studio有点不敢恭维
+                intent = new Intent(getContext(), MultiActivity.class);
+                startActivity(intent);
+                break;
+            default://默认跳转到Content4Activity
+                intent = new Intent(getContext(), Content4Activity.class);
+                intent.putExtra("title", mList.get(position));
+                Toast.makeText(getContext(), "clicked---" + position, Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                break;
+        }
     }
 
     @Override
