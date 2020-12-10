@@ -57,7 +57,7 @@ public class WangYiNewsActivity extends AppCompatActivity {
 
     /**
      * 重写onKeyDown,避免一按返回键就直接调用finish方法,回到上一个Activity.
-     * 但是这样一来,返回键貌似就会彻底被屏蔽,只能用ToolBar的导航阿牛返回
+     * 但是这样一来,返回键貌似就会彻底被屏蔽,只能用ToolBar的导航按钮返回
      *
      * @param keyCode
      * @param event
