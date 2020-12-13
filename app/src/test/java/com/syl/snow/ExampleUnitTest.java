@@ -29,6 +29,15 @@ public class ExampleUnitTest {
 //        String str = "22";
 //        System.out.println(str.split(",").length);
 //        subStringTest1();
+//        new Weather();
+        System.out.println(System.nanoTime());
+        System.out.println("System.currentTimeMillis() = " + System.currentTimeMillis());
+    }
+
+    /**
+     * 判断引用数据类型是否相等
+     */
+    private void fun1() {
         ImageE imageE1 = new ImageE(1,"11");
         ImageE imageE2 = new ImageE(1,"11");
         System.out.println(imageE1.equals(imageE2));
